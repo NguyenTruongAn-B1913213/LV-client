@@ -116,7 +116,8 @@ export default {
       'setToken',
       'setProfile',
       'setUserID',
-      'setUserName'
+      'setUserName',
+      'setRole',
     ]),
     async goToSignUp() {
       router.push("/DangKiNguoiDung"); // Chuyển hướng đến trang đăng ký
@@ -140,9 +141,11 @@ export default {
           url: "http://localhost:3000/api/user/profile",
           headers
         },)
-        console.log(response.data)
-        const proFile = response.data
+        const proFile = response.data.doctor
+        const userRole = response.data.userRole
+        console.log(1)
         this.setProfile(proFile);
+        this.setRole(userRole)
         const userID = proFile._id;
         if (proFile.tenBS) {
           const userName = proFile.tenBS
@@ -152,7 +155,14 @@ export default {
           this.setUserName(userName)
         }
         this.setUserID(userID);
-        router.push("/")
+        if (userRole == "" || userRole == "userRole") {
+          router.push("/")
+        } else if (userRole == "bacsi") {
+          router.push("/bacSi")
+        } else {
+          router.push("/admin")
+        }
+
       } catch (error) {
         console.log()
         if (error.response) {

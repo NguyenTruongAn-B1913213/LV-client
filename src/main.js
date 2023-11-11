@@ -28,7 +28,7 @@ const store = createStore({
       Cookies.set("userName", userName, { expires: expirationTime });
     },
     setRole(state, role) {
-      state.token = role;
+      state.role = role;
       const expirationTime = new Date();
       expirationTime.setTime(expirationTime.getTime() + 3 * 60 * 60 * 1000); // Set expiration time to 3 hours from now
       Cookies.set("role", role, { expires: expirationTime });

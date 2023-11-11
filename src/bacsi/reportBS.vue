@@ -163,10 +163,18 @@ export default {
             const lichkhamID = this.$route.params.id;
             const res = await axios.get(`http://localhost:3000/api/check-toathuoc/${lichkhamID}`)
             const appointmentDetails = res.data
-            this.appointment = appointmentDetails.appointment
-            this.doctor = appointmentDetails.doctor
-            this.patient = appointmentDetails.patient
-            this.ToaThuoc = appointmentDetails.toaThuoc.danhSachThuoc
+            if (appointmentDetails.toaThuoc) {
+                this.appointment = appointmentDetails.appointment
+                this.doctor = appointmentDetails.doctor
+                this.patient = appointmentDetails.patient
+                this.ToaThuoc = appointmentDetails.toaThuoc.danhSachThuoc
+            }
+            else {
+                this.appointment = appointmentDetails.appointment
+                this.doctor = appointmentDetails.doctor
+                this.patient = appointmentDetails.patient
+            }
+
             console.log(this.ToaThuoc)
 
         },

@@ -114,9 +114,10 @@
 
                     </div>
 
-
+                    <h1 style="text-align: center; padding-top: 100px;">Sở Đồ Tháng Trong Năm</h1>
                     <div style="height: 400; margin-top: 50px;">
-                        <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+                        <Bar ref="chart" id="my-chart-id" :options="chartOptions" :data="chartData" />
+
                     </div>
                 </div>
             </div>
@@ -136,6 +137,16 @@ export default {
         TheSideBarBacSi,
         Bar
     },
+    watch: {
+        optionTK: function () {
+            this.day = '';
+            this.month = '';
+            this.year = '';
+        },
+        optionTK1: function () {
+            this.optionTK2 = 0
+        },
+    },
     data() {
         return {
             ListBS: [],
@@ -149,13 +160,14 @@ export default {
             shouldShowDayField: false,
             shouldShowMonthField: false,
             shouldShowBacSiField: false,
+
             chartData: {
-                labels: Array.from({ length: 31 }, (_, i) => (i + 1).toString()), // Tạo mảng 31 ngày
+                labels: Array.from({ length: 12 }, (_, i) => (i + 1).toString()), // Tạo mảng 31 ngày
                 datasets: [
                     {
                         label: 'Doanh số',
                         backgroundColor: '#41B883',
-                        data: [50, 60, 70, 65, 80, 75, 60, 70, 85, 90, 80, 95, 80, 75, 60, 70, 85, 90, 100, 95, 80, 75, 60, 70, 85, 90, 100, 95, 80, 75, 60],
+                        data: [],
                     },
                 ],
             },
@@ -195,15 +207,72 @@ export default {
         },
         async fetchData() {
             try {
-                console.log(this.day)
-                console.log(this.month)
-                console.log(this.year)
-                // Tạo URL API với tham số ngày, tháng, và năm
-                const apiUrl = `http://localhost:3000/api/get-Thongke?day=${this.day}&month=${this.month}&year=${this.year}`;
-                const response = await axios.get(apiUrl);
-                this.soluongLK = response.data
-                console.log(this.soluongLK)
-                // Cập nhật dữ liệu biểu đồ sau khi có kết quả từ API
+                if (this.optionTK2) {
+                    const apiUrl = `http://localhost:3000/api/get-Thongke/BS?day=${this.day}&month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`;
+                    const response = await axios.get(apiUrl);
+                    this.soluongLK = response.data
+                    this.thongkeSoDo = []
+                    if (this.day && this.month && this.year) {
+                        for (let month = 1; month <= 12; month++) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS?month=${month}&year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data
+                            console.log(soluong)
+                            this.thongkeSoDo.push(soluong.soLuongLichKham);
+
+                        }
+                    }
+                    if (!this.day && this.month && this.year) {
+                        for (let month = 1; month <= 12; month++) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS?month=${month}&year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data
+                            console.log(soluong)
+                            this.thongkeSoDo.push(soluong.soLuongLichKham);
+
+                        }
+                    }
+                    this.chartData = {
+                        ...this.chartData,
+                        datasets: [
+                            {
+                                ...this.chartData.datasets[0],
+                                data: this.thongkeSoDo,
+                            },
+                        ],
+                    };
+
+                } else {
+                    const apiUrl = `http://localhost:3000/api/get-Thongke?day=${this.day}&month=${this.month}&year=${this.year}`;
+                    const response = await axios.get(apiUrl);
+                    this.soluongLK = response.data
+                    this.thongkeSoDo = []
+                    if (this.day && this.month && this.year) {
+                        for (let month = 1; month <= 12; month++) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke?month=${month}&year=${this.year}`);
+                            const soluong = res.data
+                            this.thongkeSoDo.push(soluong.soLuongLichKham);
+
+                        }
+                    }
+                    if (this.month && this.year) {
+                        for (let month = 1; month <= 12; month++) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke?month=${month}&year=${this.year}`);
+                            const soluong = res.data
+                            this.thongkeSoDo.push(soluong.soLuongLichKham);
+
+                        }
+                    }
+                    this.chartData = {
+                        ...this.chartData,
+                        datasets: [
+                            {
+                                ...this.chartData.datasets[0],
+                                data: this.thongkeSoDo,
+                            },
+                        ],
+                    };
+
+                }
+                console.log(this.chartData.datasets[0].data)
             } catch (error) {
                 console.error(error);
             }
@@ -212,7 +281,6 @@ export default {
             try {
                 const response = await axios.get("http://localhost:3000/api/get-bacsi");
                 this.ListBS = response.data
-                console.log(this.ListBS)
             } catch (error) {
                 console.log(error)
             }
