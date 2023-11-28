@@ -9,6 +9,7 @@
 <script>
 export default {
     name: 'F-chat',
+
 }
 </script>
 

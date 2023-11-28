@@ -149,7 +149,8 @@ export default {
 
 
     },
-    computed: {
+    watch: {
+        '$route.params.id': 'fetchLichKham',
     },
     async created() {
         await this.fetchLichKham()

@@ -22,12 +22,15 @@ import ChiTietLK from "../admin/chitietLK.vue";
 import ThemThuoc from "../bacsi/Listthuoc.vue";
 import IncidentReport from "../pages/ReportTemplate/IncidentReport.vue";
 import BSLichKham from "../bacsi/xemlichKham.vue";
+import historyLK from "../bacsi/historyLK.vue";
 import ListBS from "../admin/ListBS.vue";
 import admin from "../admin/admin.vue";
 import ttBS from "../admin/ttBS.vue";
 import ttPK from "../admin/TTPhongKham.vue";
 import xemlichBS from "../bacsi/reportBS.vue";
 import thongke from "../admin/ThongKe.vue";
+import chuandoan from "../bacsi/ChuanDoan.vue";
+import thongke2 from "../admin/ThongKe2.vue";
 const routes = [
   {
     path: "/",
@@ -46,7 +49,12 @@ const routes = [
     component: Bacsi,
     meta: { requiresAuth: true, requiresDoctor: true },
   },
-
+  {
+    path: "/historyLK",
+    name: "historyLK",
+    component: historyLK,
+    meta: { requiresAuth: true, requiresDoctor: true },
+  },
   {
     path: "/them-thuoc/:id",
     name: "themthuoc",
@@ -60,6 +68,12 @@ const routes = [
     meta: { requiresAuth: true, requiresDoctor: true },
   },
   {
+    path: "/ChuanDoanBS/:id",
+    name: "ChuanDoanBS",
+    component: chuandoan,
+    meta: { requiresAuth: true, requiresDoctor: true },
+  },
+  {
     path: "/admin",
     name: "admin",
     component: admin,
@@ -69,6 +83,12 @@ const routes = [
     path: "/thongke",
     name: "thongke",
     component: thongke,
+    meta: { requiresAuth: true, requiresAdmin: true },
+  },
+  {
+    path: "/thongke2",
+    name: "thongke2",
+    component: thongke2,
     meta: { requiresAuth: true, requiresAdmin: true },
   },
   {

@@ -31,14 +31,14 @@
                         </h4>
                     </router-link>
                 </li>
-                <!-- <li>
-                    <router-link to="/">
+                <li>
+                    <router-link to="/historyLK">
                         <h4>
-                            Tạo Toa Thuốc
+                            Lịch Sử Khám
                             <span class="arrow">></span>
                         </h4>
                     </router-link>
-                </li> -->
+                </li>
             </ul>
         </div>
     </aside>

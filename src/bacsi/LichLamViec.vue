@@ -95,7 +95,7 @@ export default {
         },
         sortAndSetWorkingDays(userWorkingDays, allWorkingDays) {
             // Tạo một danh sách các ngày trong tuần và xác định thứ tự của chúng
-            const daysOfWeek = ["Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật"];
+            const daysOfWeek = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"];
 
             // Tạo một đối tượng để lưu trữ ngày làm việc theo thứ tự
             const sortedWorkingDays = {};

@@ -42,7 +42,15 @@
                 <li>
                     <router-link to="/thongke">
                         <h4>
-                            Thông Kế
+                            Thống Kê
+                            <span class="arrow">></span>
+                        </h4>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link to="/thongke2">
+                        <h4>
+                            Thống Kê
                             <span class="arrow">></span>
                         </h4>
                     </router-link>

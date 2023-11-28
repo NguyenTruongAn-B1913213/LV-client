@@ -93,9 +93,31 @@
                         <h6 style="color: black;">Trạng Thái Lịch Khám : {{ appointment.trangThai }}</h6>
                     </div>
                 </div>
+                <div class="title_Info_BenhNhan" v-if="chuandoan">
+                    <h6>Chuẩn đoán</h6>
+                </div>
+                <div class="col-12 d-flex">
+                    <div v-if="chuandoan" class="col-xl-6 d-flex"
+                        style="height: 50px; border: 1px solid black; align-items:center">
+                        <h6 style="color: black;" v-if="chuandoan.cannang">Cân Nặng : {{
+                            chuandoan.cannang }}</h6>
+                    </div>
+                    <div v-if="chuandoan" class="col-xl-6 d-flex"
+                        style="height: 50px; border: 1px solid black; align-items:center">
+                        <h6 style="color: black;" v-if="chuandoan.chieucao">Chiều cao :
+                            {{ chuandoan.chieucao }}</h6>
+                    </div>
+                </div>
 
+                <div v-if="chuandoan" class="col-12 d-flex">
+                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
+                        <h6 style="color: black;" v-if="chuandoan.chuandoanbenh">Bệnh Tình :
+                            {{ chuandoan.chuandoanbenh }}</h6>
+                    </div>
+                </div>
                 <!-- Toa Thuốc -->
             </div>
+
 
             <div class="row row_three" style="margin: 0; padding: 0 100px;">
                 <div class="title_Info_BenhNhan">
@@ -146,7 +168,8 @@ export default {
             appointment: {},
             doctor: {},
             patient: {},
-            ToaThuoc: {}
+            ToaThuoc: {},
+            chuandoan: {},
 
         }
 
@@ -162,6 +185,9 @@ export default {
         async fetchLichKham() {
             const lichkhamID = this.$route.params.id;
             const res = await axios.get(`http://localhost:3000/api/check-toathuoc/${lichkhamID}`)
+            const resChuanDoan = await axios.get(`http://localhost:3000/api/chuandoanLK/${lichkhamID}`)
+            this.chuandoan = resChuanDoan.data
+            console.log(this.chuandoan)
             const appointmentDetails = res.data
             if (appointmentDetails.toaThuoc) {
                 this.appointment = appointmentDetails.appointment
