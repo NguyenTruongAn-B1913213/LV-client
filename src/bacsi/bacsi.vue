@@ -59,7 +59,7 @@ export default {
 }
 
 .aside-main {
-    background: #124a64;
+    background: #1e90ff;
     color: white;
     margin-left: -20px;
     margin-right: -20px;

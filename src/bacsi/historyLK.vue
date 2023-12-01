@@ -75,11 +75,11 @@
                             <thead>
                                 <tr class="content-main-thead">
                                     <th scope="col">STT</th>
-                                    <th scope="col">Tên Bệnh Nhân</th>
-                                    <th scope="col">Ngày Khám</th>
-                                    <th scope="col">Thứ</th>
-                                    <th scope="col">Giờ Khám</th>
-                                    <th scope="col">Trạng Thái</th>
+                                    <th scope="col">Tên bệnh nhân</th>
+                                    <th scope="col">Ngày khám</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Giờ khám</th>
+                                    <th scope="col">Bệnh lý</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>

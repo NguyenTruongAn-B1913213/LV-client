@@ -53,7 +53,7 @@
                         <router-link to="#"><i class="fab fa-instagram"></i></router-link>
                     </li>
                     <li>
-                        <router-link to="#"><i class="fab fa-facebook"></i></router-link>
+                        <a href="https://www.facebook.com/pkdktrungcang"><i class="fab fa-facebook"></i></a>
                     </li>
                     <li>
                         <router-link to="#"><i class="fab fa-twitter"></i></router-link>

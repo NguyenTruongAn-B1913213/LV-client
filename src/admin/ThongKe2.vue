@@ -106,7 +106,7 @@
                                                 <th>Stt</th>
                                                 <th>Căn Cước Công Dân/CMND</th>
                                                 <th>Tên Bệnh Nhân</th>
-                                                <th>Tên Bác Sĩ</th>
+                                                <th v-if="!optionTK2">Tên Bác Sĩ</th>
                                                 <th>Ngày Khám</th>
                                                 <th>Trạng Thái</th>
                                             </tr>
@@ -114,7 +114,7 @@
                                                 <td>{{ index + 1 }}</td>
                                                 <td>{{ item.benhNhan.madinhdanh }}</td>
                                                 <td>{{ item.benhNhan.ten }}</td>
-                                                <td>{{ item.BacSi.tenBS }}</td>
+                                                <td v-if="!optionTK2">{{ item.bacsi.tenBS }}</td>
                                                 <td>{{ item.lichKham.ngaygioKham.ngay }}</td>
                                                 <td>{{ item.lichKham.trangThai }}</td>
                                             </tr>

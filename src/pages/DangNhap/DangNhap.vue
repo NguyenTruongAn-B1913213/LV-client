@@ -8,29 +8,20 @@
           <div>
             <form class="form">
               <div class="flex-column">
-                <label>Email</label>
+                <label>Tài khoản</label>
               </div>
               <div class="inputForm">
                 <input v-model="email" placeholder="Enter your Email" class="input" type="text" />
               </div>
 
               <div class="flex-column">
-                <label>Password</label>
+                <label>Mật khẩu</label>
               </div>
               <div class="inputForm">
                 <input v-model="password" placeholder="Enter your Password" class="input" type="password" />
               </div>
-
-              <div class="flex-row">
-                <div>
-                  <input type="radio" />
-                  <label>Remember me</label>
-                </div>
-                <span class="span" @click="forgotPassword">Forgot password?</span>
-              </div>
-              <button type="submit" class="button-submit" @click="login">Đăng Nhập</button>
-              <p class="p">Don't have an account? <span class="span" @click="goToSignUp">Đăng Kí</span></p>
-              <p class="p line">Or With</p>
+              <button type="submit" class="button-submit" @click="login">Đăng nhập</button>
+              <p class="p">Bạn không có tài khoản? <span class="span" @click="goToSignUp">Đăng kí</span></p>
 
               <div class="flex-row">
                 <button class="btn google" @click="loginWithGoogle">
@@ -118,6 +109,7 @@ export default {
       'setUserID',
       'setUserName',
       'setRole',
+      'setPhoto'
     ]),
     async goToSignUp() {
       router.push("/DangKiNguoiDung"); // Chuyển hướng đến trang đăng ký
@@ -190,6 +182,8 @@ export default {
         const user = result.user;
         const userID = result.user.uid
         const userName = result.user.displayName
+        const photo = result.user.photoURL;
+        this.setPhoto(photo)
         this.setUserName(userName)
         this.setToken(token);
         this.setProfile(user);
@@ -211,6 +205,8 @@ export default {
         const token = credential.accessToken;
         const user = result.user;
         const userID = result.user.uid
+        const photo = result.user.photoURL
+        this.setPhoto(photo)
         this.setToken(token);
         this.setProfile(user);
         this.setUserID(userID);
@@ -230,16 +226,25 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+  color: rgb(30, 4, 4);
+  font-size: 25px;
+}
+
+p {
+  font-size: 20px;
+}
+
 .login {
   position: absolute;
-  width: 1px;
+  width: 2px;
   opacity: 0.2;
-  height: 90%;
+  height: 70%;
   background-color: #000;
   /* Màu sắc của đường đứng */
   left: 50%;
   transform: translateX(-50%);
-  top: 30%;
+  /* top: 50%; */
 }
 
 .form {

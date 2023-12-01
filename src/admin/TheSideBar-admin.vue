@@ -39,14 +39,14 @@
                         </h4>
                     </router-link>
                 </li>
-                <li>
+                <!-- <li>
                     <router-link to="/thongke">
                         <h4>
                             Thống Kê
                             <span class="arrow">></span>
                         </h4>
                     </router-link>
-                </li>
+                </li> -->
                 <li>
                     <router-link to="/thongke2">
                         <h4>

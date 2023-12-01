@@ -41,18 +41,19 @@
           <li class="nav-item">
             <router-link to="/" class="nav-link">Trang Chủ</router-link>
           </li>
-          <li class="nav-item dropdown">
+
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Giới Thiệu
             </a>
             <div class="dropdown-menu">
-              <router-link to="/CoSoVatChat" class="dropdown-item"> Cơ Sở Vật Chất</router-link>
+
               <router-link to="/DoiNguBacSi" class="dropdown-item">Đội Ngũ Bác Sĩ</router-link>
               <router-link to="/TinTucSuKien" class="dropdown-item">Tin Tức Sự Kiện</router-link>
             </div>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Chuyên Khoa
@@ -63,9 +64,10 @@
               <router-link to="#" class="dropdown-item">Phụ Khoa</router-link>
               <router-link to="#" class="dropdown-item">Da Liễu</router-link>
             </div>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <router-link to="" class="nav-link">Tin Nội Bộ</router-link>
+            <!-- <router-link to="" class="nav-link">Tin Nội Bộ</router-link> -->
+            <router-link to="/CoSoVatChat" class="nav-link"> Giới Thiệu</router-link>
           </li>
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -80,10 +82,13 @@
           <li class="nav-item">
             <router-link to="/DatLichKham" class="nav-link">Đặt Lịch Khám</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/TimDuongDi" class="nav-link">Tìm Đường Đi</router-link>
+          </li>
           <li class="nav-item" v-if="!token">
             <router-link to="/DangNhap" class="nav-link">Đăng Nhập</router-link>
           </li>
-          <li class="nav-item dropdown" v-else>
+          <!-- <li class="nav-item dropdown" v-else>
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Thông Tin Cá Nhân
@@ -93,11 +98,11 @@
               <router-link to="/XemLich" class="dropdown-item">Lịch Khám</router-link>
               <router-link to="/TimDuongDi" @click="removeToken" class="dropdown-item">Đăng Xuất</router-link>
             </div>
-          </li>
+          </li> -->
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <div class="bell-notifications">
+          <div class="bell-notifications" v-if="token">
             <i class="fa fa-bell"></i>
             <div class="number-notifications">
               <span>{{ numberOfNotifications }}</span>
@@ -135,9 +140,26 @@
               </ul> -->
             </div>
           </div>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="my-2 my-sm-0 buttonSearch" type="submit"><i class="fa fa-search"></i></button>
+          <div class="avatar-user" v-if="token">
+            <div class="avatar-user-header">
+              <img v-if="photo" :src="photo" alt="">
+              <img v-else :src="'https://example.com/default-image.jpg?timestamp=' + Date.now()" alt="">
 
+            </div>
+            <div class="name-user">
+              <span>{{ userName }}</span>
+              <div class="extend-name-user animate__animated animate__zoomIn">
+                <ul>
+                  <li> <router-link to="/XemLich" class="dropdown-item">Lịch khám</router-link></li>
+                  <li v-if="role == 'bacsi'"> <router-link to="/bacSi" class="dropdown-item">Bác sĩ</router-link></li>
+                  <li v-if="role == 'admin'"> <router-link to="/admin" class="dropdown-item">Quản lý</router-link>
+                  </li>
+                  <li> <router-link to="/" @click="removeToken" class="dropdown-item">Đăng xuất</router-link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </nav>
@@ -160,6 +182,8 @@ export default {
       newMessage: '', // Tin nhắn mới
       notifications: [],
       TTPhongKham: [],
+      extendUserVisible: false,
+      hideTimer: null
     }
 
 
@@ -170,7 +194,9 @@ export default {
       token: (state) => state.token,
       proFile: (state) => state.proFile,
       userName: (state) => state.userName,
-      userID: (state) => state.userID
+      userID: (state) => state.userID,
+      role: (state) => state.role,
+      photo: (state) => state.photo
     }),
     numberOfNotifications: function () {
       let quantityNotification = 0; // Khai báo và khởi tạo biến quantityNotification
@@ -191,10 +217,14 @@ export default {
     const proFile = Cookies.get("proFile");
     const UserID = Cookies.get("UserID")
     const userName = Cookies.get("userName")
+    const role = Cookies.get("role")
+    const photo = Cookies.get("photo")
     if (token) {
       this.setToken(token)
       this.setUserID(UserID)
       this.setUserName(userName)
+      this.setPhoto(photo)
+      this.setRole(role)
       if (proFile) {
         this.setProfile(JSON.parse(proFile))
       }
@@ -206,21 +236,7 @@ export default {
         this.notifications.unshift(data);
       }
     });
-    // API ChatBot
-    // const chatbotURL = 'http://localhost:5005/webhooks/rest/webhook';
 
-    // const message = {
-    //   sender: 'user',
-    //   message: 'abc'
-    // };
-
-    // axios.post(chatbotURL, message)
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
 
   },
   watch: {
@@ -237,7 +253,7 @@ export default {
 
   methods: {
 
-    ...mapMutations(['setToken', 'removeToken', 'setProfile', 'setUserID', 'setUserName']),
+    ...mapMutations(['setToken', 'removeToken', 'setProfile', 'setUserID', 'setUserName', 'setPhoto', 'setRole']),
 
     async fetchProfile() {
       try {
@@ -257,6 +273,7 @@ export default {
       }
 
     },
+
     async GetNotification() {
       try {
         const headers = {
@@ -296,6 +313,18 @@ export default {
       }
     },
 
+    showExtendUser() {
+      this.extendUserVisible = true;
+    },
+    hideExtendUser() {
+      this.hideTimer = setTimeout(() => {
+        this.extendUserVisible = false;
+      }, 5000); // 5 giây
+    },
+    cancelHideTimer() {
+      clearTimeout(this.hideTimer);
+    },
+
   }
 
 };
@@ -307,6 +336,79 @@ export default {
     display: flex;
     justify-content: space-between;
 } */
+.avatar-user {
+  display: flex;
+}
+
+.avatar-user .avatar-user-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.avatar-user .name-user span {
+  font-size: 23px;
+  padding: 20px;
+  color: white;
+}
+
+.avatar-user .name-user {
+  position: relative;
+}
+
+/* Thời gian trễ khi hover vào */
+.avatar-user .name-user:hover .extend-name-user {
+  display: block;
+  opacity: 1;
+  transition-delay: 0.7s;
+
+}
+
+/* Khi hover vào .extend-name-user, giữ hiển thị trong khoảng thời gian */
+.avatar-user .name-user .extend-name-user:hover {
+  opacity: 1;
+  transition-delay: 5s;
+  /* Giữ hiển thị trong 5 giây sau khi rê chuột ra khỏi phần tử */
+}
+
+/* Ẩn phần tử khi không hover */
+.avatar-user .name-user:not(:hover) .extend-name-user {
+  opacity: 0;
+}
+
+.extend-name-user::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  /* Điều chỉnh vị trí mũi tên đối với phần trên của khung */
+  left: 70%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-bottom-color: white;
+  /* Màu của mũi tên */
+}
+
+.avatar-user .name-user .extend-name-user {
+  background-color: white;
+  width: 240px;
+  height: auto;
+  position: absolute;
+  right: 10px;
+  top: 50px;
+  display: none;
+  opacity: 0;
+  /* Ẩn ban đầu và thiết lập độ mờ là 0 */
+  transition: opacity .3s ease-in-out;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.avatar-user .name-user .extend-name-user ul li {
+  color: black;
+  list-style: none;
+  font-size: 30px;
+}
+
+
 .bell-notifications {
   position: relative;
   margin-right: 20px;
@@ -412,21 +514,21 @@ export default {
 }
 
 .address ul li i:first-of-type {
-  color: #66bde6;
+  color: #1e90ff;
   margin-right: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .address ul li span:first-of-type {
-  color: #66bde6;
+  color: #1e90ff;
   margin-right: 10px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .address ul li span:last-of-type {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .address ul li:last-of-type {
@@ -441,7 +543,7 @@ export default {
 .navbar-header {
   position: -webkit-sticky;
   position: sticky;
-  background: #66bde6;
+  background: #1e90ff;
   top: 0;
   z-index: 100;
   padding: 10px 0;
@@ -453,7 +555,8 @@ export default {
 
 .navbar-light .navbar-nav .nav-link {
   color: white;
-  font-size: 14pt;
+  font-size: 17pt;
+  font-weight: 450;
   cursor: pointer;
   margin: 0 5px;
 }

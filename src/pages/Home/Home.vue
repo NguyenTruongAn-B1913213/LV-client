@@ -31,7 +31,8 @@
                         <span>Từ 17:00 đến 20:30</span>
                     </li>
                     <li><span>Giới Thiệu Phòng Khám Trung Cang</span>
-                        <p class="mt-3" style=" text-align: justify; ">PHÒNG KHÁM ĐA KHOA TRUNG CANG tọa lạc tại số 205 Lạc
+                        <p class="mt-3" style=" text-align: justify;  font-size: 20px;">PHÒNG KHÁM ĐA KHOA TRUNG CANG tọa
+                            lạc tại số 205 Lạc
                             Hồng, phường Vĩnh Hiệp, thành phố Rạch Giá,
                             Kiên Giang, đã bắt đầu hoạt động vào tháng 6/2019. Đây là cơ sở y tế tư nhân được đầu tư chất
                             lượng về cơ sở vật chất, trang thiết bị. Đặc biệt là đội ngũ y bác sĩ có chuyên môn kỹ thuật cao
@@ -43,7 +44,7 @@
             </div>
         </div>
 
-        <div class="TrangChu-component2 container">
+        <!-- <div class="TrangChu-component2 container">
             <div class="khamcacchuyenkhoa">
                 <h3>Khám Các Chuyên Khoa</h3>
             </div>
@@ -119,7 +120,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
 
         <div class="TrangChu-component3 container">
             <div class="khamcacchuyenkhoa">
@@ -186,7 +187,7 @@
             </div>
         </div>
 
-        <div class="TrangChu-component5">
+        <!-- <div class="TrangChu-component5">
             <div class="bac-si">
                 <div class="doingubacsi">
                     <h3>Đội Ngũ Bác Sĩ</h3>
@@ -226,9 +227,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="TrangChu-component6">
+        <!-- <div class="TrangChu-component6">
             <div class="khamcacchuyenkhoa">
                 <h3>Tin Tức Y Khoa</h3>
             </div>
@@ -326,7 +327,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -336,7 +337,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+h3 {
+    color: black;
+}
+
 .TrangChu-component1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -366,12 +371,16 @@ export default {
 
 .Info-component1 ul li span:first-of-type,
 .Info-component1 ul li i:first-of-type {
-    color: #66bde6;
-    font-size: 20px;
+    color: #1e90ff;
+    font-size: 24px;
     margin-right: 10px;
     font-weight: 600;
     margin-bottom: 15px;
 
+}
+
+.Info-component1 ul li span:last-of-type {
+    font-size: 24px;
 }
 
 .khamcacchuyenkhoa h3 {
@@ -399,7 +408,7 @@ export default {
 }
 
 .icon-chuyenkhoa ul li .nameService {
-    color: #66bde6;
+    color: #1e90ff;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
@@ -419,11 +428,12 @@ export default {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: #66bde6;
+    background: #1e90ff;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
+
 }
 
 /* 22222222222222222 */

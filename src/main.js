@@ -11,10 +11,22 @@ const store = createStore({
       userID: "",
       userName: "",
       role: "",
+      isChatbotEnabled: false,
+      photo: "",
     };
   },
   getters: {},
   mutations: {
+    toggleChatbot(state) {
+      state.isChatbotEnabled = !state.isChatbotEnabled;
+    },
+    setPhoto(state, photo) {
+      console.log(photo);
+      state.photo = photo;
+      const expirationTime = new Date();
+      expirationTime.setTime(expirationTime.getTime() + 3 * 60 * 60 * 1000); // Set expiration time to 3 hours from now
+      Cookies.set("photo", photo, { expires: expirationTime });
+    },
     setToken(state, token) {
       state.token = token;
       const expirationTime = new Date();
@@ -45,11 +57,13 @@ const store = createStore({
       state.userID = "";
       state.userName = "";
       state.role = "";
+      state.photo = "";
       Cookies.remove("token");
       Cookies.remove("proFile");
       Cookies.remove("UserID");
       Cookies.remove("role");
       Cookies.remove("userName");
+      Cookies.remove("photo");
     },
     setProfile(state, proFile) {
       state.proFile = proFile;

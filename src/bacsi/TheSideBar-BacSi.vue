@@ -61,6 +61,17 @@ export default {
 <style>
 .aside-main {
     margin-top: 0px;
+    background: white;
+}
+
+h4 {
+    font-size: 1.5rem;
+    /* Đặt kích thước chữ */
+    color: white;
+    /* Đặt màu chữ */
+    font-weight: bold;
+    /* Đặt độ đậm của chữ */
+    /* Thêm các thuộc tính CSS khác tùy thuộc vào ý muốn của bạn */
 }
 
 .name-avatar {

@@ -70,7 +70,7 @@
                                     <li>Ngày Khám : <span v-if="appointment && appointment.ngaygioKham">{{
                                         appointment.ngaygioKham.ngay }}</span></li>
                                     <li>Buổi Khám : <span v-if="appointment && appointment.ngaygioKham"> {{
-                                        appointment.ngaygioKham.buoi }}</span></li>
+                                        appointment.ngaygioKham.ca }}</span></li>
                                     <li>Trạng Thái Lịch Khám: <span>{{ appointment.trangThai }}</span></li>
                                 </ul>
 

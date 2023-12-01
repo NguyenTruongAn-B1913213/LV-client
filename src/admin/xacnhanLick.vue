@@ -107,12 +107,18 @@ export default {
             LichKhams: [],
             page: 1,
             totalPages: 0,
+            pageSize: 4,
         }
     },
     computed: {
         ...mapState({
             token: (state) => state.token,
         }),
+        paginatedProducts() {
+            const startIndex = (this.page - 1) * this.pageSize;
+            const endIndex = startIndex + this.pageSize;
+            return this.products.slice(startIndex, endIndex);
+        },
 
     },
     async created() {

@@ -1,7 +1,7 @@
 <template>
   <TheHeader />
-  <fchat />
-  <boxfchat />
+  <fchat @click="toggleChatbot" />
+  <boxfchat v-if="isChatbotEnabled" :isChatbotEnabled="isChatbotEnabled" :toggleChatbot="toggleChatbot" />
   <router-view />
   <thefooter />
 </template>
@@ -11,7 +11,7 @@ import TheHeader from "./components/TheHeader.vue";
 import thefooter from "./components/TheFooter.vue"
 import fchat from "./components/Fchat.vue"
 import boxfchat from "./components/Box-Fchat.vue"
-
+import { mapState } from "vuex";
 export default {
   name: "App",
   components: {
@@ -20,6 +20,23 @@ export default {
     fchat,
     boxfchat
   },
+  data() {
+    return {
+      isChatbotEnabled: false
+    };
+  },
+  computed: {
+    ...mapState({
+      role: (state) => state.userID
+    }),
+
+  },
+  methods: {
+    toggleChatbot() {
+      this.isChatbotEnabled = !this.isChatbotEnabled
+    },
+
+  }
 };
 </script>
 

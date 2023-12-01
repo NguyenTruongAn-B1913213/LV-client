@@ -12,10 +12,10 @@
                 </div>
                 <div class="col-12 d-flex">
                     <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Số Thứ tự Khám : {{ appointment.stt }}</h6>
+                        <h6 style="color: black;">- Số Thứ tự Khám : {{ appointment.stt }}</h6>
                     </div>
                     <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Số Định Danh : {{ patient.madinhdanh }} </h6>
+                        <h6 style="color: black;">- Số Định Danh : {{ patient.madinhdanh }} </h6>
                     </div>
                 </div>
 
