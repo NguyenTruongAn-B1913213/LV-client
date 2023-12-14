@@ -1,12 +1,12 @@
 <template>
     <div class="datlichkham">
-        <div class="datlichkhambacsi_component1" style="text-align: center; color: black;">
+        <!-- <div class="datlichkhambacsi_component1" style="text-align: center; color: black;">
             <h3 class="title_datlichkhambacsi_component1">Đặt Lịch Khám Bác Sĩ
             </h3>
-        </div>
+        </div> -->
 
         <div class="datlichkhambacsi_component2">
-            <div class="container">
+            <div class="container-fulid container1">
                 <h3>ĐẶT LỊCH KHÁM</h3>
                 <div class="form_dangkykhambenh">
                     <form>
@@ -267,6 +267,15 @@ export default {
 </script>
 
 <style scoped>
+.a label {
+    margin-left: 50px;
+
+}
+
+.container1 {
+    margin: 0 140px;
+}
+
 .form-control {
     width: 80%;
     height: 55px;
@@ -309,6 +318,7 @@ label span {
     padding: 50px 0;
     font-weight: 500;
     color: black;
+    font-size: 40px;
 }
 
 .row_infor {
@@ -319,6 +329,18 @@ label span {
     width: 80%;
     height: 55px;
     margin: auto;
+    font-size: 20px;
+}
+
+.col_infor label {
+    font-size: 20px;
+}
+
+.col_infor select {
+    width: 80%;
+    height: 55px;
+    margin: auto;
+    font-size: 20px;
 }
 
 /* ------ */

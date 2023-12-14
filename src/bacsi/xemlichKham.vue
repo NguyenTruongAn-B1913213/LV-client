@@ -12,14 +12,19 @@
                                 <h3 class="title-bill-status"> Lịch Khám</h3>
                             </div>
                             <div class="searchXemLich d-flex" style="justify-content: right; margin: 25px 30px  ;">
-                                <input type="search" placeholder="Tìm kiếm Tên Bệnh Nhân...." v-model="searchKeyword">
-                                <button class="submit" type="submit"><i class="fa fa-search"></i></button>
+                                <select v-model="searchOption" style="width: 250px; margin-right: 20px; font-size: 20px;">
+                                    <option value="ten">Tên</option>
+                                    <option value="soCMT">Số CMT</option>
+                                </select>
+                                <input type="search" placeholder="Tìm kiếm...." v-model="searchKeyword">
+                                <!-- <button class="submit" type="submit"><i class="fa fa-search"></i></button> -->
                             </div>
                         </div>
                         <table class="table table-light">
                             <thead>
                                 <tr class="content-main-thead">
                                     <th scope="col">STT</th>
+                                    <th scope="col">Mã CCCD</th>
                                     <th scope="col">Tên Bệnh Nhân</th>
                                     <th scope="col">Ngày Khám</th>
                                     <th scope="col">Thứ</th>
@@ -34,6 +39,9 @@
                                 <tr class="content-main-tbody-admin" v-for="(item, index) in filteredLichKham" :key="index">
                                     <th scope="row">{{ index + 1 }}</th>
                                     <td class="title-name">
+                                        {{ item.benhNhan.madinhdanh }}
+                                    </td>
+                                    <td class="title-name">
                                         {{ item.benhNhan.ten }}
                                     </td>
 
@@ -44,7 +52,7 @@
                                     <td class="title-name">{{ item.lichKham.ngaygioKham.ca }}</td>
                                     <td>{{ item.lichKham.trangThai }}</td>
                                     <td><router-link :to="`/ChuanDoanBS/${item.lichKham._id} `"> <button
-                                                class="equal-width-button  btn btn-success">Chuẩn
+                                                class="equal-width-button  btn btn-success">Chẩn
                                                 Đoán</button></router-link>
                                     </td>
 
@@ -111,6 +119,7 @@ export default {
             currentPage: 1,
             searchKeyword: "",
             totalPages: 0,
+            searchOption: "ten",
         }
     },
     computed: {
@@ -123,9 +132,16 @@ export default {
             const startIndex = (this.currentPage - 1) * this.itemsPerPage;
             const endIndex = startIndex + this.itemsPerPage;
             const filteredData = this.LichKhams.filter((lichKham) => {
-                // Lọc theo tên bệnh nhân
-                const tenBenhNhan = lichKham.benhNhan.ten.toLowerCase();
-                return tenBenhNhan.includes(this.searchKeyword.toLowerCase());
+
+
+                if (this.searchOption === "ten") {
+                    const tenBenhNhan = lichKham.benhNhan.ten.toLowerCase();
+                    return tenBenhNhan.includes(this.searchKeyword.toLowerCase());
+                } else {
+                    const soCCCD = lichKham.benhNhan.madinhdanh.toLowerCase()
+                    return soCCCD.includes(this.searchKeyword.toLowerCase());
+                }
+
             });
             return filteredData.slice(startIndex, endIndex);
         },
@@ -176,6 +192,14 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+h3 {
+    font-size: 40px;
+}
+
+.table {
+    font-size: 20px;
+}
+
 .title-bill-status {
     color: black;
     margin: 25px 0;
@@ -205,6 +229,7 @@ export default {
 
 .equal-width-button {
     width: 100%;
+    font-size: 20px;
     /* Đảm bảo rằng button có chiều rộng bằng với cột */
 }
 

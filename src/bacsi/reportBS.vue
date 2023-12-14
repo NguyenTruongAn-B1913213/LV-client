@@ -1,69 +1,69 @@
 <template>
     <div class="templateReport">
-        <div class="container-fluid" style="margin-bottom: 40px;">
+        <div class="container" style="margin-bottom: 40px;">
             <div style="text-align: center;">
-                <h4>Chi Tiết Lịch Khám</h4>
+                <h4 style="color: black; font-size: 40px;">Chi Tiết Lịch Khám</h4>
                 <!-- <h3>BASELINE DATA</h3> -->
             </div>
-            <div class="row row_two" style="padding: 0 100px;">
+            <div class="row row_two" style="padding: 0px;">
                 <!-- Thông Tin Bệnh Bác -->
                 <div class="title_Info_BenhNhan">
-                    <h6>Thông Tin Bệnh Nhân</h6>
+                    <h6>Thông Tin Bệnh Nhân </h6>
                 </div>
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Số Thứ tự Khám : {{ appointment.stt }}</h6>
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- STT : {{ appointment.stt }}</h6>
                     </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Số Định Danh : {{ patient.madinhdanh }} </h6>
-                    </div>
-                </div>
-
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Họ và Tên : {{ patient.ten }}</h6>
-                    </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Ngày Sinh : {{ patient.ngaySinh }}</h6>
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Số định danh : {{ patient.madinhdanh }} </h6>
                     </div>
                 </div>
 
-
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Số Điện Thoại : {{ patient.soDienThoai }}</h6>
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Họ và Tên : {{ patient.ten }}</h6>
                     </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Địa chỉ : {{ patient.diaChi }}</h6>
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Ngày sinh : {{ patient.ngaySinh }}</h6>
                     </div>
                 </div>
 
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Giới Tính : {{ patient.gioiTinh }}</h6>
+
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Số điện thoại : {{ patient.soDienThoai }}</h6>
+                    </div>
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Địa chỉ : {{ patient.diaChi }}</h6>
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Giới tính : {{ patient.gioiTinh }}</h6>
                     </div>
                 </div>
 
                 <!-- Thông Tin Bác Sĩ -->
                 <div class="title_Info_BenhNhan">
-                    <h6>Thông Tin Bác Sĩ</h6>
+                    <h6>Thông tin bác sĩ</h6>
                 </div>
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black;align-items: center; ">
-                        <h6 style="color: black">Họ và Tên : {{ doctor.tenBS
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px; align-items: center; ">
+                        <h6 style="color: black;">- Họ và Tên : {{ doctor.tenBS
                         }}</h6>
                     </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Khoa : {{ doctor.chuyenKhoa }}</h6>
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Khoa : {{ doctor.chuyenKhoa }}</h6>
                     </div>
                 </div>
 
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Ngày Sinh : {{ doctor.ngaySinh }}</h6>
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Ngày sinh : {{ doctor.ngaySinh }}</h6>
                     </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Số Điện Thoại : {{ doctor.ngaySinh }}</h6>
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Số điện thoại : {{ doctor.ngaySinh }}</h6>
                     </div>
                 </div>
 
@@ -73,45 +73,44 @@
                 <div class="title_Info_BenhNhan">
                     <h6>Lịch Khám</h6>
                 </div>
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;" v-if="appointment && appointment.ngaygioKham">Ngày Khám : {{
-                            appointment.ngaygioKham.ngay }}</h6>
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;" v-if="appointment && appointment.ngaygioKham">- Ngày khám :
+                            {{
+                                appointment.ngaygioKham.ngay }}</h6>
                     </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;" v-if="appointment && appointment.ngaygioKham">Buổi Khám :
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;" v-if="appointment && appointment.ngaygioKham">- Buổi khám :
                             {{ appointment.ngaygioKham.ca }}</h6>
                     </div>
                 </div>
 
-                <div class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;" v-if="appointment && appointment.ngaygioKham">Thứ :
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;" v-if="appointment && appointment.ngaygioKham">- Thứ :
                             {{ appointment.ngaygioKham.thu }}</h6>
                     </div>
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;">Trạng Thái Lịch Khám : {{ appointment.trangThai }}</h6>
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;">- Trạng thái lịch khám : {{ appointment.trangThai }}</h6>
                     </div>
                 </div>
                 <div class="title_Info_BenhNhan" v-if="chuandoan">
-                    <h6>Chuẩn đoán</h6>
+                    <h6>Chẩn đoán</h6>
                 </div>
-                <div class="col-12 d-flex">
-                    <div v-if="chuandoan" class="col-xl-6 d-flex"
-                        style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;" v-if="chuandoan.cannang">Cân Nặng : {{
+                <div class="col-12 d-flex" style="margin:0 40px;">
+                    <div v-if="chuandoan" class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;" v-if="chuandoan.cannang">- Cân nặng : {{
                             chuandoan.cannang }}</h6>
                     </div>
-                    <div v-if="chuandoan" class="col-xl-6 d-flex"
-                        style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;" v-if="chuandoan.chieucao">Chiều cao :
+                    <div v-if="chuandoan" class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;" v-if="chuandoan.chieucao">- Chiều cao :
                             {{ chuandoan.chieucao }}</h6>
                     </div>
                 </div>
 
-                <div v-if="chuandoan" class="col-12 d-flex">
-                    <div class="col-xl-6 d-flex" style="height: 50px; border: 1px solid black; align-items:center">
-                        <h6 style="color: black;" v-if="chuandoan.chuandoanbenh">Bệnh Tình :
+                <div v-if="chuandoan" class="col-12 d-flex" style="margin:0 40px;">
+                    <div class="col-xl-6 d-flex" style="height: 50px;  align-items:center">
+                        <h6 style="color: black;" v-if="chuandoan.chuandoanbenh">- Bệnh tình :
                             {{ chuandoan.chuandoanbenh }}</h6>
                     </div>
                 </div>
@@ -119,25 +118,25 @@
             </div>
 
 
-            <div class="row row_three" style="margin: 0; padding: 0 100px;">
+            <div class="row row_three" style="margin: 20px 0;">
                 <div class="title_Info_BenhNhan">
-                    <h6>Toa Thuốc</h6>
+                    <h6 style="margin-bottom: 20px;">Toa thuốc</h6>
                 </div>
                 <div class="col-12 d-flex" style="padding: 0;">
                     <div class="col-xl-6" style="height: 100; border: 1px solid black ; background-color: #d4d4d4;">
-                        <h6 style="color: black;">Thuốc</h6>
+                        <h6 style="color: black;margin:0 40px;">Thuốc</h6>
                     </div>
                     <div class="col-xl-6" style="height: 100; border: 1px solid black ; background-color: #d4d4d4;">
-                        <h6 style="color: black;">Hướng Dẫn Sử Dụng </h6>
+                        <h6 style="color: black;">Hướng dẫn sử dụng </h6>
                     </div>
                 </div>
 
 
                 <div class="col-12 d-flex" style="margin: 0;padding: 0;" v-for="(item, index) in ToaThuoc" :key="index">
-                    <div class="col-xl-6" style="padding: 0;margin: 0;height: 100; border: 1px solid black">
+                    <div class="col-xl-6" style="padding: 0;margin: 0;height: 70; border: 1px solid black;">
                         <h6 style="color: black;">{{ item.tenThuoc }}</h6>
                     </div>
-                    <div class="col-xl-6" style="padding: 0;margin: 0;height: 100; border: 1px solid black">
+                    <div class="col-xl-6" style="padding: 0;margin: 0;height: 70; border: 1px solid black">
                         <h6 style="color: black;">{{ item.huongDanSuDung }}</h6>
                     </div>
                 </div>
@@ -205,7 +204,7 @@ export default {
 
         },
         async exportToPDF() {
-            const element = document.querySelector('.container-fluid');
+            const element = document.querySelector('.container');
             html2pdf(element)
 
         },
@@ -227,13 +226,14 @@ export default {
 .row_one {
     width: 350;
     height: 30;
-    border: 1px solid black;
+
     margin: 20px auto;
 }
 
 .row_two div {
     margin-bottom: 5px;
 }
+
 
 
 .row_ul,

@@ -2,7 +2,10 @@
     <div class="ChiTietLichKham">
         <div class="main_ChiTietLichKham">
             <div class="row">
-                <div class="col-xl-12 thongtinBacSi">
+                <div class="col-sm-3">
+                    <TheSideBarBacSi />
+                </div>
+                <div class="col-sm-9 thongtinBacSi">
                     <h5 style="text-align:center">Thông Tin Phòng Khám</h5>
                     <div class="main_thongtinBacSi" style="display: flex; justify-content: center;">
                         <div class="row row_thongtinBacSi">
@@ -20,16 +23,17 @@
                             </div>
                         </div>
                     </div>
+                    <div div class=" button-submit-chitiet">
+                        <div class="button-submit-capnhat">
+                            <button class="capnhat btn btn-success" type="button" @click="updatePhongKham">Cập Nhật</button>
+                        </div>
+                        <!-- <div class="button-submit-capnhat">
+                            <button class="huy btn btn-success" @click="Back">Trở Lại</button>
+                        </div> -->
+                    </div>
                 </div>
             </div>
-            <div div class=" button-submit-chitiet">
-                <div class="button-submit-capnhat">
-                    <button class="capnhat btn btn-success" type="button" @click="updatePhongKham">Cập Nhật</button>
-                </div>
-                <div class="button-submit-capnhat">
-                    <button class="huy btn btn-success" @click="Back">Trở Lại</button>
-                </div>
-            </div>
+
         </div>
     </div>
 </template>
@@ -37,7 +41,11 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
+import TheSideBarBacSi from '../admin/TheSideBar-admin.vue';
 export default {
+    components: {
+        TheSideBarBacSi
+    },
     data() {
         return {
             TTPhongKham: {},
@@ -89,8 +97,9 @@ export default {
 </script>
 
 <style scoped>
-.ChiTietLichKham h3 {
+.ChiTietLichKham h5 {
     padding: 20px;
+    font-size: 40px;
 }
 
 .line_bottom::after {
@@ -113,7 +122,8 @@ export default {
 }
 
 .col_thongtinBacSi ul li input {
-    width: 350px;
+    width: 400px;
+    font-size: 20px;
 }
 
 /* .col_thongtinbenhnhan ul li:not(:last-child),
@@ -130,7 +140,8 @@ export default {
 .col_thongtinbenhnhan ul li span,
 .col_thongtinBacSi ul li span {
     font-weight: 300;
-    margin-right: 20px;
+    margin-right: 10px;
+    font-size: 20px;
 }
 
 .col_thongtinbenhnhan,
@@ -145,11 +156,13 @@ export default {
     align-items: center;
     gap: 10px;
     margin-left: 40px;
+
 }
 
 .button-submit-capnhat button {
     padding: 15px;
     font-size: 20px;
-    width: 150px;
+    width: 200px;
+    font-size: 20px;
 }
 </style>

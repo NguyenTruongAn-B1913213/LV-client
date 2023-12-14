@@ -63,7 +63,7 @@ export default {
     color: white;
     margin-left: -20px;
     margin-right: -20px;
-    height: 763px;
+    height: 1000px;
 }
 
 .dropdown button {

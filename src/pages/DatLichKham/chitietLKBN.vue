@@ -4,7 +4,7 @@
         <div class="main_ChiTietLichKham">
             <div class="row">
                 <div class="col-xl-6 thongtinbenhnhan">
-                    <h5 style="text-align:center">Thông Tin Bệnh Nhân</h5>
+                    <h5 style="text-align:center; font-size: 30px;">Thông Tin Bệnh Nhân</h5>
                     <div class="main_thongtinbenhnhan">
                         <div class="row row_thongtinbenhnhan">
                             <div class="col-xl-6 col_thongtinbenhnhan">
@@ -34,7 +34,7 @@
 
 
                 <div class="col-xl-6 thongtinBacSi">
-                    <h5 style="text-align:center">Thông Tin Bác Sĩ Và Lịch Khám</h5>
+                    <h5 style="text-align:center; font-size: 30px;">Thông Tin Bác Sĩ Và Lịch Khám</h5>
                     <div class="main_thongtinBacSi">
                         <div class="row row_thongtinBacSi">
                             <div class="col-xl-6 col_thongtinBacSi">
@@ -133,6 +133,7 @@ export default {
     padding: 20px;
     color: black;
     text-align: center;
+    font-size: 50px;
 }
 
 .line_bottom::after {
@@ -140,13 +141,13 @@ export default {
     content: '';
     display: block;
     height: 4px;
-    margin: 0;
+    margin: 0 auto;
     position: relative;
     top: 9px;
     width: 100px;
     border-radius: 20px;
     margin-bottom: 50px;
-    text-align: center;
+
 }
 
 .col_thongtinbenhnhan ul li,
@@ -164,6 +165,7 @@ export default {
 .col_thongtinbenhnhan ul li,
 .col_thongtinBacSi ul li {
     font-weight: bold;
+    font-size: 20px;
 }
 
 .col_thongtinbenhnhan ul li span,

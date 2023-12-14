@@ -17,8 +17,14 @@
                         </div> -->
                             </div>
                             <div class="searchXemLich d-flex" style="justify-content: right; margin: 25px 30px  ;">
-                                <input type="search" placeholder="Tìm kiếm Tên Bệnh Nhân...." v-model="searchKeyword">
-                                <button class="submit" type="submit"><i class="fa fa-search"></i></button>
+                                <select v-model="searchOption" style="width: 250px; margin-right: 20px; font-size: 20px;">
+                                    <option value="ten">Tên</option>
+                                    <option value="soCMT">Số CMT</option>
+                                </select>
+                                <input style="font-size: 20px;" type="search" placeholder="Tìm kiếm..."
+                                    v-model="searchKeyword">
+
+                                <!-- <button class="submit" type="submit"><i class="fa fa-search"></i></button> -->
                             </div>
                         </div>
                         <div class="d-flex" style="margin: 20px 0;">
@@ -46,48 +52,54 @@
                             </div> -->
                             <div>
                                 <!-- Trường chọn ngày -->
-                                <select v-model="day" class="mr-2" style="height: 38px;">
-                                    <option value="">Chọn ngày</option>
-                                    <option v-for="n in 31" :key="n" :value="n">{{ n }}</option>
+                                <select v-model="day" class="mr-2" style="height: 38px; font-size: 20px;">
+                                    <option style="font-size: 20px;" value="">Chọn ngày</option>
+                                    <option style="font-size: 20px;" v-for="n in 31" :key="n" :value="n">{{ n }}</option>
                                 </select>
 
                                 <!-- Trường chọn tháng -->
-                                <select v-model="month" class="mr-2" style="height: 38px;">
-                                    <option value="">Chọn tháng</option>
-                                    <option v-for="n in 12" :key="n" :value="n">{{ n }}</option>
+                                <select v-model="month" class="mr-2" style="height: 38px; font-size: 20px;">
+                                    <option style="font-size: 20px;" value="">Chọn tháng</option>
+                                    <option style="font-size: 20px;" v-for="n in 12" :key="n" :value="n">{{ n }}</option>
                                 </select>
 
                                 <!-- Trường chọn năm -->
-                                <select v-model="year" class="mr-2" style="height: 38px;">
-                                    <option value="">Chọn năm</option>
-                                    <option v-for="n in 100" :key="n" :value="n + 2000">{{ n + 2000 }}</option>
+                                <select v-model="year" class="mr-2" style="height: 38px; font-size: 20px;">
+                                    <option style="font-size: 20px;" value="">Chọn năm</option>
+                                    <option style="font-size: 20px;" v-for="n in 100" :key="n" :value="n + 2000">{{ n + 2000
+                                    }}</option>
                                 </select>
 
                             </div>
                             <!-- Trường nhập ngày -->
 
                             <div>
-                                <button class="btn btn-success" @click="fetchLichKhamWithTime" type="submit">Xác
+                                <button style="font-size: 17px;" class="btn btn-success" @click="fetchLichKhamWithTime"
+                                    type="submit">Xác
                                     Nhận</button>
                             </div>
                         </div>
                         <table class="table table-light">
                             <thead>
                                 <tr class="content-main-thead">
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên bệnh nhân</th>
-                                    <th scope="col">Ngày khám</th>
-                                    <th scope="col"></th>
-                                    <th scope="col">Giờ khám</th>
-                                    <th scope="col">Bệnh lý</th>
-                                    <th scope="col"></th>
+                                    <th style="font-size: 20px;" scope="col">STT</th>
+                                    <th style="font-size: 20px;" scope="col">Mã định danh</th>
+                                    <th style="font-size: 20px;" scope="col">Tên bệnh nhân</th>
+                                    <th style="font-size: 20px;" scope="col">Ngày khám</th>
+                                    <th style="font-size: 20px;" scope="col"> Thứ</th>
+                                    <th style="font-size: 20px;" scope="col">Giờ khám</th>
+                                    <th style="font-size: 20px;" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- v-for="(order, index) in delivery"
                                                 :key="index" -->
-                                <tr class="content-main-tbody-admin" v-for="(item, index) in filteredLichKham" :key="index">
+                                <tr style="font-size: 20px;" class="content-main-tbody-admin"
+                                    v-for="(item, index) in filteredLichKham" :key="index">
                                     <th scope="row">{{ index + 1 }}</th>
+                                    <td class="title-name">
+                                        {{ item.benhNhan.madinhdanh }}
+                                    </td>
                                     <td class="title-name">
                                         {{ item.benhNhan.ten }}
                                     </td>
@@ -97,14 +109,14 @@
                                     <!--  v-for="(item, index) in order.item" :key="index">
                                                     {{ item.product }} - Số Lượng {{ item.soluong }} -->
                                     <td class="title-name">{{ item.lichKham.ngaygioKham.ca }}</td>
-                                    <td>{{ item.lichKham.trangThai }}</td>
+                                    <!-- <td>{{ item.lichKham.trangThai }}</td> -->
                                     <!-- <td><router-link :to="`/ChuanDoanBS/${item.lichKham._id} `"> <button
                                                 class="equal-width-button  btn btn-success">Chuẩn
                                                 Đoán</button></router-link>
                                     </td> -->
 
-                                    <td><router-link :to="`/xemlichBS/${item.lichKham._id}`"> <button
-                                                class="equal-width-button  btn btn-success">Chi
+                                    <td style="font-size: 20px;"><router-link :to="`/xemlichBS/${item.lichKham._id}`">
+                                            <button class="equal-width-button  btn btn-success">Chi
                                                 Tiết</button></router-link>
                                     </td>
 
@@ -173,6 +185,8 @@ export default {
             day: '',
             month: '',
             year: '',
+            searchOption: "ten",
+            searchKeywordID: ""
         }
     },
     computed: {
@@ -184,13 +198,17 @@ export default {
         filteredLichKham() {
             const startIndex = (this.currentPage - 1) * this.itemsPerPage;
             const endIndex = startIndex + this.itemsPerPage;
-            console.log(startIndex)
-            console.log(endIndex)
             const filteredData = this.LichKhams.filter((lichKham) => {
-                // Lọc theo tên bệnh nhân
-                console.log(lichKham)
-                const tenBenhNhan = lichKham.benhNhan.ten.toLowerCase();
-                return tenBenhNhan.includes(this.searchKeyword.toLowerCase());
+
+
+                if (this.searchOption === "ten") {
+                    const tenBenhNhan = lichKham.benhNhan.ten.toLowerCase();
+                    return tenBenhNhan.includes(this.searchKeyword.toLowerCase());
+                } else {
+                    const soCCCD = lichKham.benhNhan.madinhdanh.toLowerCase()
+                    return soCCCD.includes(this.searchKeyword.toLowerCase());
+                }
+
             });
             return filteredData.slice(startIndex, endIndex);
         },
@@ -233,6 +251,7 @@ export default {
                 },)
                 console.log(res.data)
                 this.LichKhams = res.data
+                console.log(this.LichKhams)
                 this.totalPages = Math.ceil(this.LichKhams.length / this.itemsPerPage);
                 console.log(this.totalPages)
             } catch (error) {
@@ -242,14 +261,20 @@ export default {
         async fetchLichKhamWithTime(e) {
             e.preventDefault()
             try {
-                const res = await axios({
-                    methods: "GET",
-                    url: `http://localhost:3000/api/chuandoanLKTime/${this.userID}?day=${this.day}&month=${this.month}&year=${this.year}`,
-                },)
-                console.log(res.data)
-                this.LichKhams = res.data
-                this.totalPages = Math.ceil(this.LichKhams.length / this.itemsPerPage);
-                console.log(this.totalPages)
+                if (this.day && this.month && this.year) {
+                    const res = await axios({
+                        methods: "GET",
+                        url: `http://localhost:3000/api/chuandoanLKTime/${this.userID}?day=${this.day}&month=${this.month}&year=${this.year}`,
+                    },)
+                    console.log(res.data)
+                    this.LichKhams = res.data
+                    this.totalPages = Math.ceil(this.LichKhams.length / this.itemsPerPage);
+                    this.day = ''
+                    this.month = ''
+                    this.year = ''
+                } else {
+                    this.fetchLichKham()
+                }
             } catch (error) {
                 this.Message = "abc"
             }
@@ -278,6 +303,7 @@ export default {
     color: black;
     margin: 25px 0;
     text-align: left;
+    font-size: 40px;
 }
 
 .equal-width-table {

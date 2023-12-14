@@ -1,6 +1,6 @@
 <template>
   <div class="DangNhap">
-    <div class="container">
+    <div class="container-fuild container1">
       <div class="row">
         <div class="col-xl-6 title-login">
           <h4>Bạn Đã Có Tài Khoản</h4>
@@ -11,20 +11,21 @@
                 <label>Tài khoản</label>
               </div>
               <div class="inputForm">
-                <input v-model="email" placeholder="Enter your Email" class="input" type="text" />
+                <input style="font-size: 22px;" v-model="email" placeholder="Nhập tài khoản" class="input" type="text" />
               </div>
 
               <div class="flex-column">
                 <label>Mật khẩu</label>
               </div>
               <div class="inputForm">
-                <input v-model="password" placeholder="Enter your Password" class="input" type="password" />
+                <input style="font-size: 20px;" v-model="password" placeholder="Nhập mật khẩu" class="input"
+                  type="password" />
               </div>
               <button type="submit" class="button-submit" @click="login">Đăng nhập</button>
               <p class="p">Bạn không có tài khoản? <span class="span" @click="goToSignUp">Đăng kí</span></p>
 
               <div class="flex-row">
-                <button class="btn google" @click="loginWithGoogle">
+                <button style="font-size: 20px;" class=" btn google" @click="loginWithGoogle">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 32 32" height="20">
                     <path
                       d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z">
@@ -32,7 +33,7 @@
                   </svg>
                   Google
                 </button>
-                <button class="btn twitter" @click="loginWithTwitter">
+                <button style="font-size: 20px;" class="btn twitter" @click="loginWithTwitter">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="-64 0 512 512" height="20">
                     <path
                       d="M336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z">
@@ -226,6 +227,11 @@ export default {
 </script>
 
 <style scoped>
+.container1 {
+  margin-left: 160px;
+  margin-right: 160px;
+}
+
 h4 {
   color: rgb(30, 4, 4);
   font-size: 25px;
@@ -272,9 +278,9 @@ p {
 }
 
 .inputForm {
-  border: 1.5px solid #ecedec;
+  border: 1.5px solid #bbbdbb;
   border-radius: 10px;
-  height: 50px;
+  height: 70px;
   display: flex;
   align-items: center;
   padding-left: 10px;
@@ -312,7 +318,7 @@ p {
 }
 
 .span {
-  font-size: 14px;
+  font-size: 20px;
   margin-left: 5px;
   color: #2d79f3;
   font-weight: 500;
@@ -321,35 +327,36 @@ p {
 
 .button-submit {
   margin: 20px 0 10px 0;
-  background-color: #66bde6;
+  background-color: #039ae3;
   border: none;
   color: white;
   font-size: 15px;
   font-weight: 500;
   border-radius: 10px;
-  height: 50px;
+  height: 70px;
   width: 100%;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .p {
   text-align: center;
   color: black;
-  font-size: 14px;
+  font-size: 20px;
   margin: 5px 0;
 }
 
 .btn {
   margin-top: 10px;
   width: 100%;
-  height: 50px;
+  height: 70px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 500;
   gap: 10px;
-  border: 1px solid #ededef;
+  border: 1px solid #bbbdbb;
   background-color: white;
   cursor: pointer;
   transition: 0.2s ease-in-out;

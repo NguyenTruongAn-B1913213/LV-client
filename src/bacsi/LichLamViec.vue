@@ -6,24 +6,24 @@
                 <div class="col-sm-3">
                     <TheSideBarBacSi />
                 </div>
-                <div class="col-sm-9 Add-admin-product" style="margin-top: 0px;">
-                    <div class="container">
+                <div class="col-sm-9 Add-admin-product" style="margin-top: 0px; background: white;">
+                    <div class="" style="margin-top: 16px;">
                         <div class="row">
                             <div class=" col-sm-12">
-                                <form class="main-add-content" style="padding-top: 20px;">
-                                    <table class="table table-light">
-                                        <thead>
+                                <form class="main-add-content">
+                                    <table class="table table-striped">
+                                        <thead class="thead-light">
                                             <tr class="content-main-thead">
                                                 <!-- <th scope="col">ID</th> -->
-                                                <th scope="col">Ngày</th>
-                                                <th scope="row">Buổi</th>
+                                                <th style="font-size: 20px;" scope="col">Ngày</th>
+                                                <th style="font-size: 20px;" scope="row">Buổi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="content-main-tbody-product" v-for="(day, index) in LichLamViecID"
                                                 :key="index">
-                                                <td class="dateLamViec">{{ index }}</td>
-                                                <td class="buoiLamViec">
+                                                <td style="font-size: 20px;" class="dateLamViec">{{ index }}</td>
+                                                <td style="font-size: 20px;" class="buoiLamViec">
                                                     <ul>
                                                         <li v-for="(schedule, i) in day" :key="i">{{ schedule
                                                         }}</li>
@@ -160,6 +160,10 @@ export default {
 </script>
   
 <style>
+.Add-admin-product {
+    background: white;
+}
+
 .content-main-tbody-admin {
     margin: 0;
 }
@@ -222,5 +226,6 @@ th {
 
 .Add-admin-product {
     margin-top: 0px;
+    background: white;
 }
 </style>

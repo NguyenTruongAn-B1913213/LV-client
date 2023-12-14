@@ -1,24 +1,24 @@
 <template>
     <div>
         <div class="ChiTietLichKham">
-            <h3 class="line_bottom" style="color:  black; text-align: center;">Chuẩn đoán Bệnh Nhân</h3>
+            <h3 class="line_bottom" style="color:  black; text-align: center; font-size:  40px;">Chẩn đoán bệnh</h3>
             <div class="main_ChiTietLichKham">
                 <div class="row">
                     <div class="col-xl-6 thongtinbenhnhan">
-                        <h5 style="text-align:center">Thông Tin Bệnh Nhân</h5>
+                        <h5 style="text-align:center">Thông tin bệnh nhân</h5>
                         <div class="main_thongtinbenhnhan">
                             <div class="row row_thongtinbenhnhan">
                                 <div class="col-xl-6 col_thongtinbenhnhan">
                                     <ul>
                                         <li>
-                                            <label for="">Số Định Danh :</label>
+                                            <label for="">Số định danh :</label>
                                             <input type="text" v-model="patient.madinhdanh">
                                         </li>
                                         <li>
                                             <label for="">Họ và tên :</label>
                                             <input type="text" v-model="patient.ten">
                                         </li>
-                                        <li><label for="">Ngày Sinh :</label>
+                                        <li><label for="">Ngày sinh :</label>
                                             <input type="date" v-model="patient.ngaySinh">
                                         </li>
 
@@ -28,13 +28,13 @@
                                 <div class="col-xl-6 col_thongtinbenhnhan">
                                     <ul>
                                         <li>
-                                            <label style="" for="">Số Điện Thoại :</label>
+                                            <label style="" for="">Số điện thoại :</label>
                                             <input type="tel" v-model="patient.soDienThoai">
                                         </li>
                                         <li><label for="">Địa chỉ :</label>
                                             <input type="text" v-model="patient.diaChi">
                                         </li>
-                                        <li><label for="">Giới Tính :</label>
+                                        <li><label for="">Giới tính :</label>
                                             <select v-model="patient.gioiTinh" id="gioitinh" class="form-control">
                                                 <option value="Nam">Nam</option>
                                                 <option value="Nữ">Nữ</option>
@@ -49,25 +49,25 @@
 
 
                     <div class="col-xl-6 thongtinBacSi">
-                        <h5 style="text-align:center">Thông Tin Bác Sĩ Và Lịch Khám</h5>
+                        <h5 style="text-align:center">Thông tin bác sĩ và lịch khám</h5>
                         <div class="main_thongtinBacSi">
                             <div class="row row_thongtinBacSi">
                                 <div class="col-xl-6 col_thongtinBacSi">
                                     <ul>
                                         <li>Họ và Tên : <span>{{ doctor.tenBS }}</span></li>
                                         <li>Khoa : <span>{{ doctor.chuyenKhoa }}</span></li>
-                                        <li>Ngày Sinh : <span>{{ doctor.ngaySinh }}</span> </li>
-                                        <li>Số Điện Thoại : <span>{{ doctor.soDienThoai }}</span></li>
+                                        <li>Ngày sinh : <span>{{ doctor.ngaySinh }}</span> </li>
+                                        <li>Số điện thoại : <span>{{ doctor.soDienThoai }}</span></li>
                                     </ul>
                                 </div>
 
                                 <div class="col-xl-6 col_thongtinBacSi">
                                     <ul>
-                                        <li>Ngày Khám : <span v-if="appointment && appointment.ngaygioKham">{{
+                                        <li>Ngày khám : <span v-if="appointment && appointment.ngaygioKham">{{
                                             appointment.ngaygioKham.ngay }}</span></li>
-                                        <li>Buổi Khám : <span v-if="appointment && appointment.ngaygioKham"> {{
+                                        <li>Buổi khám : <span v-if="appointment && appointment.ngaygioKham"> {{
                                             appointment.ngaygioKham.ca }}</span></li>
-                                        <li>Trạng Thái Lịch Khám: <span>{{ appointment.trangThai }}</span></li>
+                                        <li>Trạng thái lịch khám: <span>{{ appointment.trangThai }}</span></li>
                                     </ul>
 
                                 </div>
@@ -77,21 +77,21 @@
 
 
                     <div class="col-xl-6 thongtinbenhnhan">
-                        <h5 style="text-align:center">Thông Tin Chuẩn Đoán </h5>
-                        <div class="main_thongtinbenhnhan">
+                        <h5 style="text-align:center">Thông tin chẩn đoán </h5>
+                        <div class="main_thongtinbenhnhan" style="text-align:center">
                             <div class="row row_thongtinbenhnhan">
-                                <div class="col-xl-6 col_thongtinbenhnhan">
+                                <div class="col-xl-12 col_thongtinbenhnhan">
                                     <ul>
                                         <li>
-                                            <label for="">Cân Nặng :</label>
-                                            <input v-model="cannang" type="text">
+                                            <label for="">Cân nặng :</label>
+                                            <input style="height: 50px;" v-model="cannang" type="text">
                                         </li>
                                         <li>
-                                            <label for="">Chiều Cao :</label>
-                                            <input v-model="chieucao" type="text">
+                                            <label for="">Chiều cao :</label>
+                                            <input style="height: 50px;" v-model="chieucao" type="text">
                                         </li>
-                                        <li><label for="">Bệnh Tình :</label>
-                                            <input v-model="benhtinh" type="text">
+                                        <li><label for="">Tình trạng bệnh :</label>
+                                            <input style="height: 50px;" v-model="benhtinh" type="text">
                                         </li>
                                     </ul>
                                 </div>
@@ -103,10 +103,10 @@
                     <div class="button-submit-capnhat">
                         <button @click="submitSuaThongTin" class="capnhat btn btn-success">Xác Nhận</button>
                     </div>
-                    <div class="button-submit-capnhat">
+                    <!-- <div class="button-submit-capnhat">
                         <router-link :to="`/them-thuoc/${appointment._id} `"><button class="capnhat btn btn-success">Thêm
                                 Thuôc</button></router-link>
-                    </div>
+                    </div> -->
                     <div class="button-submit-capnhat">
                         <button @click="back" class="capnhat btn btn-danger"> Trở Lại</button>
                     </div>
@@ -163,7 +163,7 @@ export default {
                     maBN: patientId,
                 }
                 await axios.post("http://localhost:3000/api/chuandoan", data)
-                this.$router.push(`/xemlichBS/${lichkhamID}`);
+                this.$router.push(`/them-thuoc/${this.appointment._id} `);
             } catch (error) {
                 console.error(error);
             }
@@ -189,6 +189,14 @@ select {
     /* Chỉnh độ rộng cho phần input và select */
 }
 
+h5 {
+    font-size: 27px;
+}
+
+.thongtinbenhnhan {
+    font-size: 20px;
+}
+
 .row_thongtinbenhnhan li {
     display: flex;
     align-items: center;
@@ -198,12 +206,18 @@ select {
 .row_thongtinbenhnhan label {
     flex: 0.8;
     margin-right: 10px;
+    font-size: 20px;
+}
+
+.row_thongtinbenhnhan li input {
+    font-size: 20px;
 }
 
 .row_thongtinbenhnhan select {
     flex: 2;
     /* Điều này làm cho phần select mở rộng hơn phần label */
     padding: 5px;
+    font-size: 20px;
 }
 
 .ChiTietLichKham h3 {
@@ -215,7 +229,7 @@ select {
     content: '';
     display: block;
     height: 4px;
-    margin: 0;
+    margin: 0 auto;
     position: relative;
     top: 9px;
     width: 100px;
@@ -248,6 +262,7 @@ select {
 .col_thongtinbenhnhan,
 .col_thongtinBacSi {
     margin-bottom: 50px;
+    font-size: 20px;
 }
 
 /* ------------ */
@@ -263,5 +278,9 @@ select {
     padding: 15px;
     font-size: 20px;
     width: 150px;
+}
+
+.col_thongtinbenhnhan ul li input {
+    font-size: 20px;
 }
 </style>

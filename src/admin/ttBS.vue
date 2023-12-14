@@ -2,8 +2,11 @@
     <div class="ChiTietLichKham">
         <div class="main_ChiTietLichKham">
             <div class="row">
-                <div class="col-xl-12 thongtinBacSi">
-                    <h5 style="text-align:center">Thông Tin Bác Sĩ</h5>
+                <div class="col-sm-3">
+                    <TheSideBarBacSi />
+                </div>
+                <div class="col-sm-9 thongtinBacSi">
+                    <h5 style="text-align:center; font-size: 40px;">Thông Tin Bác Sĩ</h5>
                     <div class="main_thongtinBacSi" style="display: flex; justify-content: center;">
                         <div class="row row_thongtinBacSi">
                             <div class="col-xl-12 col_thongtinBacSi">
@@ -12,26 +15,24 @@
                                             v-model="doctor.tenBS"></li>
                                     <li><span>Khoa :</span> <input style="margin-left: 55px;" type="text"
                                             v-model="doctor.chuyenKhoa"></li>
-                                    <li><span>Ngày Sinh :</span><input style="margin-left: 25px;" type="text"
+                                    <li><span>Ngày sinh :</span><input style="margin-left: 25px;" type="text"
                                             v-model="doctor.ngaySinh"> </li>
-                                    <li><span>Số Điện Thoại :</span><input type="text" v-model="doctor.soDienThoai"></li>
-                                    <li><span>Tiểu Sử :</span></li>
-                                    <li><textarea name="message" rows="10" cols="62"
+                                    <li><span>Số điện thoại :</span><input type="text" v-model="doctor.soDienThoai"></li>
+                                    <li><span>Tiểu sử :</span></li>
+                                    <li><textarea name="message" rows="4" cols="62"
                                             v-model="doctor.tieusu">The cat was playing in the garden.</textarea></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <div div class=" button-submit-chitiet">
+                        <div class="button-submit-capnhat">
+                            <button class="capnhat btn btn-success" @click="updateDoctor">Cập Nhật</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div div class=" button-submit-chitiet">
-                <div class="button-submit-capnhat">
-                    <button class="capnhat btn btn-success" @click="updateDoctor">Cập Nhật</button>
-                </div>
-                <div class="button-submit-capnhat">
-                    <button class="huy btn btn-success" @click="Back">Trở Lại</button>
-                </div>
-            </div>
+
         </div>
     </div>
 </template>
@@ -39,7 +40,12 @@
 <script>
 import axios from 'axios'
 import router from '@/router'
+import TheSideBarBacSi from '../admin/TheSideBar-admin.vue';
+
 export default {
+    components: {
+        TheSideBarBacSi
+    },
     data() {
         return {
             doctor: {},
@@ -93,6 +99,10 @@ export default {
     padding: 20px;
 }
 
+/* .col-sm-3 {
+    background: #213f5c;
+} */
+
 .line_bottom::after {
     background-color: #66bde6;
     content: '';
@@ -110,10 +120,16 @@ export default {
 .col_thongtinBacSi ul li {
     list-style: none;
     padding: 20px;
+    font-size: 20px;
 }
 
 .col_thongtinBacSi ul li input {
-    width: 350px;
+    width: 400px;
+    height: 50px;
+}
+
+.col_thongtinBacSi ul li textarea {
+    font-size: 20px;
 }
 
 /* .col_thongtinbenhnhan ul li:not(:last-child),
@@ -151,5 +167,6 @@ export default {
     padding: 15px;
     font-size: 20px;
     width: 150px;
+    text-align: center;
 }
 </style>

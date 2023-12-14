@@ -8,23 +8,24 @@
                 </div>
                 <div class="col-sm-9 Add-admin-product">
                     <form class="main-add-content">
-                        <table class="table table-dark">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Thứ</th>
-                                    <th scope="col">Ca Khám</th>
-                                    <th scope="col"></th>
+                                    <th style="font-size: 20px;" scope="col">STT</th>
+                                    <th style="font-size: 20px;" scope="col">Thứ</th>
+                                    <th style="font-size: 20px;" scope="col">Ca khám</th>
+                                    <th style="font-size: 20px;" scope="col">Thêm</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(item, index) in ngayLamviec" :index="index" :key="item._id">
                                     <th scope="row">{{ index + 1 }}</th>
-                                    <td>{{ item.thu }}</td>
-                                    <td>{{ item.ca }}</td>
-                                    <td>
-                                        <input type="checkbox" :id="`checkbox-${index}`" :value="item._id"
-                                            v-model="selectedNgayLamViec" :checked="isWorkingDayChecked(item.id)" />
+                                    <td style="font-size: 20px; text-align: center;">{{ item.thu }}</td>
+                                    <td style="font-size: 20px; text-align: center;">{{ item.ca }}</td>
+                                    <td style="font-size: 20px; text-align: center;">
+                                        <input style="width: 20px; height: 20px;" type="checkbox" :id="`checkbox-${index}`"
+                                            :value="item._id" v-model="selectedNgayLamViec"
+                                            :checked="isWorkingDayChecked(item.id)" />
                                         <label :for="`checkbox-${index}`"></label>
                                     </td>
                                 </tr>
@@ -204,6 +205,7 @@ th {
 
 .Add-admin-product {
     margin-top: 0px;
+    background: white;
 }
 
 .button-submit-chitiet {

@@ -19,36 +19,40 @@
                         <table class="table table-light">
                             <thead>
                                 <tr class="content-main-thead">
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên Bệnh Nhân</th>
-                                    <th scope="col">Ngày Khám</th>
-                                    <th scope="col">Thứ</th>
-                                    <th scope="col">Giờ Khám</th>
-                                    <th scope="col">Trạng Thái</th>
-                                    <th scope="col"></th>
+                                    <th style="font-size: 20px;" scope="col">STT</th>
+                                    <th style="font-size: 20px;" scope="col">Tên bệnh nhân</th>
+                                    <th style="font-size: 20px;" scope="col">Tên bác sĩ </th>
+                                    <th style="font-size: 20px;" scope="col">Ngày khám</th>
+                                    <th style="font-size: 20px;" scope="col">Thứ</th>
+                                    <th style="font-size: 20px;" scope="col">Giờ khám</th>
+                                    <th style="font-size: 20px;" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- v-for="(order, index) in delivery"
                                                 :key="index" -->
                                 <tr class="content-main-tbody-admin" v-for="(item, index) in LichKhams" :key="index">
-                                    <th scope="row">{{ index + 1 }}</th>
-                                    <td class="title-name">
+                                    <th style="font-size: 20px;" scope="row">{{ index + 1 }}</th>
+                                    <td style="font-size: 20px;" class="title-name">
                                         {{ item.benhNhan.ten }}
                                     </td>
-
-                                    <td class="title-price">{{ item.LichKham.ngaygioKham.ngay }}</td>
-                                    <td class="title-price">{{ item.LichKham.ngaygioKham.thu }}</td>
+                                    <td style="font-size: 20px;" class="title-name">
+                                        {{ item.bacSi.tenBS }}
+                                    </td>
+                                    <td style="font-size: 20px;" class="title-price">{{ item.LichKham.ngaygioKham.ngay }}
+                                    </td>
+                                    <td style="font-size: 20px;" class="title-price">{{ item.LichKham.ngaygioKham.thu }}
+                                    </td>
                                     <!--  v-for="(item, index) in order.item" :key="index">
                                                     {{ item.product }} - Số Lượng {{ item.soluong }} -->
-                                    <td class="title-name">{{ item.LichKham.ngaygioKham.ca }}</td>
-                                    <td>{{ item.LichKham.trangThai }}</td>
-                                    <td> <button type="button" class="equal-width-button  btn btn-success"
+                                    <td style="font-size: 20px;" class="title-name">{{ item.LichKham.ngaygioKham.ca }}</td>
+                                    <td> <button style="font-size: 20px;" type="button"
+                                            class="equal-width-button  btn btn-success"
                                             @click="adminConfirmAppointment(item.LichKham._id)">Xác
                                             Nhận</button>
                                     </td>
                                     <td><router-link :to="`/ChiTietLK/${item.LichKham._id}`"> <button
-                                                class="equal-width-button  btn btn-success">Chi
+                                                style="font-size: 20px;" class="equal-width-button  btn btn-success">Chi
                                                 Tiết</button></router-link>
                                     </td>
 
@@ -107,7 +111,7 @@ export default {
             LichKhams: [],
             page: 1,
             totalPages: 0,
-            pageSize: 4,
+            pageSize: 8,
         }
     },
     computed: {
@@ -171,6 +175,10 @@ export default {
 </script>
 <style lang="css" scoped>
 .title-bill-status {
+    font-size: 40px;
+}
+
+.title-bill-status {
     color: black;
     margin: 25px 0;
     text-align: left;
@@ -182,6 +190,10 @@ export default {
     /* Đảm bảo bảng chiếm toàn bộ chiều rộng của container */
     table-layout: fixed;
     /* Để làm cho các cột có chiều rộng bằng nhau */
+}
+
+.main-add-product-admin {
+    background: white;
 }
 
 .equal-width-table th,

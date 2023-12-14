@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <fchat @click="toggleChatbot" />
+  <fchat v-if="token" @click="toggleChatbot" />
   <boxfchat v-if="isChatbotEnabled" :isChatbotEnabled="isChatbotEnabled" :toggleChatbot="toggleChatbot" />
   <router-view />
   <thefooter />
@@ -27,7 +27,8 @@ export default {
   },
   computed: {
     ...mapState({
-      role: (state) => state.userID
+      role: (state) => state.role,
+      token: (state) => state.token
     }),
 
   },

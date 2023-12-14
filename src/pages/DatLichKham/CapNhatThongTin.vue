@@ -1,10 +1,10 @@
 <template>
     <div class="ChiTietLichKham">
-        <h3 class="line_bottom">Chi Tiết Lịch Khám</h3>
+        <h3 style="color: black; text-align: center;" class="line_bottom">Cập Nhật Thông Tin</h3>
         <div class="main_ChiTietLichKham">
             <div class="row">
                 <div class="col-xl-6 thongtinbenhnhan">
-                    <h5 style="text-align:center">Thông Tin Bệnh Nhân</h5>
+                    <h5 style="text-align:center; font-size: 30px;">Thông Tin Bệnh Nhân</h5>
                     <div class="main_thongtinbenhnhan">
                         <div class="row row_thongtinbenhnhan">
                             <div class="col-xl-6 col_thongtinbenhnhan">
@@ -53,7 +53,7 @@
 
 
                 <div class="col-xl-6 thongtinBacSi">
-                    <h5 style="text-align:center">Thông Tin Bác Sĩ Và Lịch Khám</h5>
+                    <h5 style="text-align:center; font-size: 30px;">Thông Tin Bác Sĩ Và Lịch Khám</h5>
                     <div class="main_thongtinBacSi">
                         <div class="row row_thongtinBacSi">
                             <div class="col-xl-6 col_thongtinBacSi">
@@ -160,6 +160,7 @@ select {
 
 .ChiTietLichKham h3 {
     padding: 20px;
+    font-size: 50px;
 }
 
 .line_bottom::after {
@@ -167,18 +168,30 @@ select {
     content: '';
     display: block;
     height: 4px;
-    margin: 0;
+    margin: 0 auto;
     position: relative;
     top: 9px;
     width: 100px;
     border-radius: 20px;
     margin-bottom: 50px;
+
 }
 
 .col_thongtinbenhnhan ul li,
 .col_thongtinBacSi ul li {
     list-style: none;
     padding: 20px;
+    font-size: 20px;
+}
+
+.col_thongtinbenhnhan ul li label {
+    font-size: 20px;
+
+}
+
+.col_thongtinbenhnhan ul li select {
+    font-size: 20px;
+
 }
 
 .col_thongtinbenhnhan ul li:not(:last-child),

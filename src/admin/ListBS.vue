@@ -7,9 +7,9 @@
                 </div>
                 <div class="col-sm-9">
                     <form class="main-add-product-admin">
-                        <div class="d-flex" style="justify-content: space-between;">
+                        <div class="d-flex" style="justify-content: space-between; text-align: center;">
                             <div>
-                                <h3 class="title-bill-status"> Bác Sĩ</h3>
+                                <h3 class="title-bill-status">Danh sách bác sĩ</h3>
                             </div>
                             <!-- <div class="searchXemLich d-flex" style="justify-content: right; margin: 25px 30px  ;">
                                 <input type="search" placeholder="Tìm kiếm Thuốc....">
@@ -19,24 +19,24 @@
                         <table class="table table-light">
                             <thead>
                                 <tr class="content-main-thead">
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên Bác Sĩ</th>
-                                    <th scope="col">Chuyên Khoa</th>
-                                    <th scope="col">Ngày Sinh</th>
-                                    <th scope="col"></th>
+                                    <th style=" font-size: 20px;" scope="col">STT</th>
+                                    <th style=" font-size: 20px;" scope="col">Tên Bác Sĩ</th>
+                                    <th style=" font-size: 20px;" scope="col">Chuyên Khoa</th>
+                                    <th style=" font-size: 20px;" scope="col">Ngày Sinh</th>
+                                    <th style=" font-size: 20px;" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- v-for="(order, index) in delivery"
                                                 :key="index" -->
                                 <tr class="content-main-tbody-admin" v-for="(item, index) in ListBS" :key="index">
-                                    <th scope="row">{{ index + 1 }}</th>
-                                    <td class="title-name">
+                                    <th style=" font-size: 20px;" scope="row">{{ index + 1 }}</th>
+                                    <td style=" font-size: 20px;" class="title-name">
                                         {{ item.tenBS }}
                                     </td>
 
-                                    <td class="title-price">{{ item.chuyenKhoa }}</td>
-                                    <td class="title-price">{{ item.ngaySinh }}</td>
+                                    <td style=" font-size: 20px;" class="title-price">{{ item.chuyenKhoa }}</td>
+                                    <td style=" font-size: 20px;" class="title-price">{{ item.ngaySinh }}</td>
                                     <!--  v-for="(item, index) in order.item" :key="index">
                                                     {{ item.product }} - Số Lượng {{ item.soluong }} -->
                                     <!-- <td> <button type="button" class="equal-width-button  btn btn-success">Cập Nhật Thông
@@ -46,13 +46,14 @@
                                             Việc</button>
                                     </td> -->
 
-                                    <td><router-link :to="`/Thong-tin-BS/${item._id}`"> <button
+                                    <td><router-link :to="`/Thong-tin-BS/${item._id}`"> <button style=" font-size: 20px;"
                                                 class="equal-width-button  btn btn-success">Cập Nhật
                                                 Thông
                                                 Tin</button></router-link>
                                     </td>
                                     <td><router-link :to="`/admin/LichLamViec/${item._id}`"> <button
-                                                class="equal-width-button  btn btn-success">Lịch Làm
+                                                class="equal-width-button  btn btn-success" style=" font-size: 20px;">Lịch
+                                                Làm
                                                 Việc</button></router-link>
                                     </td>
 
@@ -138,6 +139,10 @@ export default {
 </script>
 <style lang="css" scoped>
 .title-bill-status {
+    font-size: 40px;
+}
+
+.title-bill-status {
     color: black;
     margin: 25px 0;
     text-align: left;
@@ -161,6 +166,7 @@ export default {
     border: 1px solid #ccc;
     /* Định dạng viền */
     text-align: center;
+
     /* Căn giữa nội dung của mỗi ô */
 }
 
@@ -174,7 +180,7 @@ export default {
     padding: 10px 20px;
     background: greenyellow;
     color: black;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .status-bill {

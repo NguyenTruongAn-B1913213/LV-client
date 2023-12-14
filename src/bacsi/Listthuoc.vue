@@ -7,13 +7,14 @@
                     <TheSideBarBacSi />
                 </div>
                 <div class="col-sm-9 ThemThuoc">
-                    <div class="search d-flex" style="justify-content: right; margin: 20px 0;">
-                        <input type="search" placeholder="Tìm kiếm Thuốc...." v-model="searchKeyword">
-                        <button class="submit" type="submit"><i class="fa fa-search"></i></button>
+                    <div class="search d-flex" style="justify-content: right; margin: 20px 0; font-size: 20px;">
+                        <input type="search" placeholder="Tìm kiếm Thuốc...." v-model="searchKeyword"
+                            style="height: 40px; ">
+                        <!-- <button class="submit" type="submit"><i class="fa fa-search"></i></button> -->
                     </div>
                     <div class="main_list_thuoc">
                         <div>
-                            <h4>Danh Sách Thuốc </h4>
+                            <h4 style="color: black;">Danh Sách Thuốc </h4>
                         </div>
                         <table class="table">
                             <thead class="thead-dark">
@@ -245,6 +246,14 @@ export default {
 </script>
 
 <style scoped>
+h4 {
+    font-size: 40px;
+}
+
+.table {
+    font-size: 20px;
+}
+
 .listThuoc {
     position: relative;
 }

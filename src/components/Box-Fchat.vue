@@ -6,17 +6,30 @@
             Chat
             <i class="fa fa-minus minus"></i>
         </div>
-        <div class="chat-window">
+        <div class="chat-window" ref="chatWindow">
             <ul class="message-list">
                 <!-- Loop through messages and display them -->
-                <li v-for="(message, index) in messages" :key="index" class="message">{{ message }}</li>
+                <li v-for="(message, index) in messages" :key="index" class="message">
+                    <span v-if="!message.buttons" :class="{ 'custom-table': message.table }" v-html="message"></span>
+                    <span v-if="message.buttons">{{ message.text }}</span>
+                    <div v-if="message.buttons && message.buttons.length > 0" class="button-list">
+                        <button v-for="(button, buttonIndex) in message.buttons" :key="buttonIndex"
+                            @click="handleButtonClick(button)">
+                            {{ button.title }}
+                        </button>
+                    </div>
+                </li>
+
             </ul>
+
         </div>
 
         <div class="chat-input">
-            <input v-model="newMessage" type="text" class="message-input" placeholder="Type your message here">
-            <i class="fa fa-microphone mic"></i>
-            <button @click="sendMessage" type="submit" class="send-button">Send</button>
+            <input style="font-size: 20px;" v-model="newMessage" type="text" class="message-input" placeholder="Aa"
+                @keydown="onKeydown">
+
+            <i @click="startSpeechRecognition" style="cursor: pointer;" class="fa fa-microphone mic"></i>
+            <button @click="sendMessage" type="submit" class="send-button">Gửi</button>
         </div>
     </div>
 </template>
@@ -29,6 +42,7 @@ export default {
         return {
             messages: [],
             newMessage: '',
+            buttons: [],
         };
     },
     props: {
@@ -41,12 +55,26 @@ export default {
         }),
 
     },
+    created() {
+        this.newMessage = "Xin Chào bạn đã đến với phòng khám của chúng tôi"
+        this.messages.push(`Bot : ${this.newMessage}`);
+        this.newMessage = ""
+        this.scrollToBottom();
+    },
     methods: {
+        onKeydown(event) {
+            // Kiểm tra xem phím được nhấn có phải là "Enter" không (keyCode 13)
+            if (event.keyCode === 13) {
+                // Gọi hàm xử lý gửi tin nhắn ở đây
+                this.sendMessage();
+            }
+        },
         async sendMessage() {
             const chatbotURL = 'http://localhost:5005/webhooks/rest/webhook';
             if (this.newMessage.trim() === '') return;
 
-            this.messages.push(`You : ${this.newMessage}`);
+            this.messages.push(`Bạn : ${this.newMessage}`);
+            this.scrollToBottom();
             const youMessage = this.newMessage
             this.newMessage = '';
             const message = {
@@ -54,32 +82,115 @@ export default {
                 message: youMessage
             };
             const response = await axios.post(chatbotURL, message);
-            console.log(response.data[0].text)
-            // Push user and bot messages into separate arrays
+            console.log(response)
+            if (response.data[0].buttons) {
+                this.messages.push({
+                    text: response.data[0].text,
+                    buttons: response.data[0].buttons
+                });
+            } else {
+                this.messages.push(`bot: ${response.data[0].text}`);
+            }
+            this.scrollToBottom();
 
-            this.messages.push(`bot: ${response.data[0].text}`);
+        },
+        async handleButtonClick(button) {
+            this.newMessage = button.title
+            console.log(this.newMessage)
+            const chatbotURL = 'http://localhost:5005/webhooks/rest/webhook';
+            if (this.newMessage.trim() === '') return;
 
-            console.log(this.messages)
+            this.messages.push(`Bạn : ${this.newMessage}`);
+            this.scrollToBottom();
+            const youMessage = this.newMessage
+            this.newMessage = '';
+            const message = {
+                sender: this.userID,
+                message: youMessage
+            };
+            const response = await axios.post(chatbotURL, message);
+            this.messages.push(`Bot: ${response.data[0].text}`);
+            this.scrollToBottom();
+            // Implement actions based on the clicked button
 
-            // Simulate a response from an assistant after a delay
+            // Add your logic here, such as sending a specific message or triggering an action
         },
         invokeToggleChatbot() {
             // Invoke the toggleChatbot method
             this.toggleChatbot();
+        },
+        async startSpeechRecognition() {
+            // Check if the browser supports the SpeechRecognition API
+            if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+                const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+                // Set language (optional)
+                recognition.lang = 'vi-VN';
+
+                // Start speech recognition
+                recognition.start();
+
+                recognition.onresult = async (event) => {
+                    const transcript = event.results[0][0].transcript;
+
+                    this.newMessage = transcript;
+                    this.messages.push(`You : ${this.newMessage}`);
+                    this.scrollToBottom();
+                    const message = {
+                        sender: this.userID,
+                        message: this.newMessage
+                    };
+                    const chatbotURL = 'http://localhost:5005/webhooks/rest/webhook';
+                    const response = await axios.post(chatbotURL, message);
+                    this.messages.push(`Bot: ${response.data[0].text}`);
+                    this.scrollToBottom();
+                };
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                };
+            } else {
+                console.error('Speech recognition not supported in this browser.');
+            }
+        },
+        scrollToBottom() {
+            this.$nextTick(() => {
+                const chatWindow = this.$refs.chatWindow;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            });
+        },
+        updated() {
+            this.scrollToBottom();
         },
     }
 }
 </script>
 
 <style scoped>
+.custom-table {
+    font-size: 20px;
+}
+
+.button-list button {
+    background: white;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 .card-box-fchat .chat-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.tinnhan table {
+    border: 1px solid black;
+    font-size: 20px;
+}
+
 .card-box-fchat .chat-header .minus {
     margin-right: 10px;
+    background: 0084ff;
 }
 
 .chat-input .mic {
@@ -89,17 +200,18 @@ export default {
 
 .message-list li {
     margin: 10px 10px;
-    background-color: #0084ff;
+    background-color: #F0F0F0;
     /* Màu nền tin nhắn của người dùng */
     color: white;
     padding: 10px;
     border-radius: 15px;
     /* Góc bo tròn cho tin nhắn */
-    max-width: 70%;
+    max-width: 100%;
     /* Độ rộng tối đa của tin nhắn */
     word-wrap: break-word;
     /* Tự động xuống dòng khi tin nhắn dài */
     margin-bottom: 5px;
+    font-size: 20px;
 }
 
 .card-box-fchat {
@@ -116,7 +228,7 @@ export default {
 
 
 .chat-header {
-    background-color: #333;
+    background-color: #039ae3;
     color: #fff;
     padding: 10px;
     font-size: 18px;
@@ -143,6 +255,10 @@ export default {
     border-top: 1px solid #ccc;
 }
 
+span {
+    color: #050505;
+}
+
 .message-input {
     flex: 1;
     border: none;
@@ -154,11 +270,12 @@ export default {
 .send-button {
     border: none;
     outline: none;
-    background-color: #333;
+    background-color: #039ae3;
     color: #fff;
     font-size: 14px;
     padding: 5px 10px;
     cursor: pointer;
+    font-size: 19px;
 }
 
 .send-button:hover {

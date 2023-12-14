@@ -9,13 +9,13 @@
                     <!-- <div class="header-sm-9">
                         <span>Overview</span>
                     </div> -->
-                    <div class="container">
+                    <div class="container-fluid container1">
                         <div class="row">
                             <div class="col-sm-12">
                                 <form class="main-add-product-admin">
                                     <h3 class="title-bill-status"> Lịch Khám</h3>
                                     <table class="table table-light">
-                                        <thead>
+                                        <thead class="thead-light">
                                             <tr class="content-main-thead">
                                                 <th scope="col">STT</th>
                                                 <th scope="col">Tên Bệnh Nhân</th>
@@ -38,7 +38,7 @@
                                                 <td class="title-price">{{ item.LichKham.ngaygioKham.ngay }}</td>
                                                 <!--  v-for="(item, index) in order.item" :key="index">
                                                     {{ item.product }} - Số Lượng {{ item.soluong }} -->
-                                                <td class="title-name">{{ item.LichKham.ngaygioKham.buoi }}</td>
+                                                <td class="title-name">{{ item.LichKham.ngaygioKham.ca }}</td>
                                                 <td>{{ item.LichKham.trangThai }}</td>
                                                 <td><router-link :to="`/ChiTietLKBN/${item.LichKham._id}`"> <button
                                                             class="equal-width-button  btn btn-success">Chi
@@ -116,9 +116,26 @@ export default {
 </script>
 <style lang="css" scoped>
 .title-bill-status {
+    font-size: 40px;
+}
+
+.Add-admin-product {
+    background: white;
+}
+
+.title-bill-status {
     color: black;
     margin: 25px 0;
     text-align: left;
+}
+
+.main-add-product-admin {
+    margin: 0 150px;
+    margin-bottom: 20px;
+}
+
+.table {
+    font-size: 20px;
 }
 
 .equal-width-table {
@@ -127,6 +144,14 @@ export default {
     /* Đảm bảo bảng chiếm toàn bộ chiều rộng của container */
     table-layout: fixed;
     /* Để làm cho các cột có chiều rộng bằng nhau */
+}
+
+.col-sm-12 {
+    padding-bottom: 40px;
+}
+
+.thead-light th {
+    color: #1c1e20;
 }
 
 .equal-width-table th,

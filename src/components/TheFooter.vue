@@ -1,16 +1,16 @@
 <template>
     <div class="footer">
         <div class="TrangChu-component7">
-            <div class="container">
+            <div class="">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="map">
-                            <h3>Bản Đồ</h3>
+                            <h3 style="margin-bottom: 40px;">Bản Đồ</h3>
                         </div>
-                        <div class="area-map">
+                        <div class="area-map" style="text-align: center;">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1138985817765!2d105.10441467459489!3d10.007449772907407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0b533c8767f8b%3A0x7145ba5a58fdebbb!2zUGjDsm5nIGtow6FtIMSQYSBraG9hIFRydW5nIENhbmc!5e0!3m2!1svi!2s!4v1692109923401!5m2!1svi!2s"
-                                width="540" height="460" style="border:0;" allowfullscreen="" loading="lazy"
+                                width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
@@ -21,16 +21,16 @@
                                 <h3>Liên Hệ</h3>
                             </div>
                             <ul>
-                                <li><i class="fa fa-mobile-alt"></i><span>Hotline: 0123.456.789</span></li>
-                                <li><i class="fa fa-phone"></i><span>Phone: 0123.456.789</span></li>
+                                <li><i class="fa fa-mobile-alt"></i><span>Hotline: 088 874 3399</span></li>
+                                <li><i class="fa fa-phone"></i><span>Phone: 088 874 3399</span></li>
                                 <li><i class="fa fa-envelope"></i><span>Email: contact@demo.com</span></li>
-                                <li><i class="fa fa-map-marker-alt"></i><span>Số 123 Đường Phan Chu Trinh, Quận 10,
-                                        TP.HCM</span></li>
+                                <li><i class="fa fa-map-marker-alt"></i><span>205 Lạc Hồng, P.Vĩnh Hiệp, TP.Rạch Giá, T.Kiên
+                                        Giang</span></li>
                             </ul>
 
 
                         </div>
-                        <div class="info-contact-2">
+                        <!-- <div class="info-contact-2">
                             <div class="map">
                                 <h3>Đăng Ký Nhận Bản Tin</h3>
                             </div>
@@ -38,7 +38,7 @@
                                 <input type="text" placeholder="Nhập Email Của Bạn...." class="cell-email">
                                 <button class="send" type="submit">Gửi Đi</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -116,19 +116,39 @@ export default {
 }
 
 .info-contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px;
+    display: block;
+
+}
+
+.map {}
+
+.info-contact ul {
+    margin-left: 150px;
+}
+
+.info-contact ul li {
+    /* text-align: center; */
 }
 
 .info-contact-2 {
     margin-left: 100px;
 }
 
+.map {
+    margin-bottom: 10px;
+}
+
 .map h3 {
     text-align: center;
-    margin-top: 30px;
+    font-size: bold;
+    font-size: 40;
+    color: white;
+    margin-top: 20px;
+}
+
+.contact .info-contact ul {
+    color: black;
+
 }
 
 .contact .info-contact ul li {
@@ -136,6 +156,8 @@ export default {
     margin-top: 20px;
     font-size: 16px;
     letter-spacing: 2px;
+    width: 600px;
+    font-size: 20px;
 }
 
 .contact .info-contact ul li:not(:last-of-type) {
@@ -154,7 +176,6 @@ export default {
 
 .nhap-email-gui-di .send {
     border: 1px dashed black;
-    background: #4682b4;
     color: white;
 }
 </style>

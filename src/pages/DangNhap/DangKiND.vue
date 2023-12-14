@@ -1,10 +1,10 @@
 <template>
   <div class="ChiTietDangKy">
-    <h3 class="line_bottom mt-5" style="text-align:center">Đăng Ký</h3>
+    <h3 class="line_bottom mt-5" style="text-align:center; color: black; font-size: 40px;">Đăng Ký</h3>
     <div class="main_ChiTietDangKy">
       <div class="row">
         <div class="col-xl-6 thongtinkhachhang">
-          <h5 style="text-align:center">Thông Tin Khách Hàng</h5>
+          <h5 style="text-align:center; font-size: 30px;">Thông Tin Khách Hàng</h5>
           <div class="main_thongtinkhachhang">
             <div class="row row_thongtinkhachhang">
               <div class="col-xl-12 col_thongtinkhachhang">
@@ -15,7 +15,7 @@
                   </li>
                   <li>
                     <label for="">Giới Tính(*)</label>
-                    <select v-model="gioiTinh" id="gioitinh" class="form-control">
+                    <select style="font-size: 20px;" v-model="gioiTinh" id="gioitinh" class="form-control">
                       <option value="Nam">Nam</option>
                       <option value="Nữ">Nữ</option>
                     </select>
@@ -41,7 +41,7 @@
 
 
         <div class="col-xl-6 thongtinDangKy">
-          <h5 style="text-align:center">Thông Tin Mật Khẩu</h5>
+          <h5 style="text-align:center; font-size: 30px;">Thông Tin Mật Khẩu</h5>
           <div class="main_thongtinDangKy">
             <div class="row row_thongtinDangKy">
               <div class="col-xl-12 col_thongtinDangKy">
@@ -55,7 +55,7 @@
                     <input v-model="password" type="password" placeholder="Vui lòng Mật Khẩu Của Bạn...." required>
                   </li>
                   <div class="button_DangKy">
-                    <button type="submit" @click="submitForm">
+                    <button style="font-size: 20px;" type="submit" @click="submitForm">
                       Đăng Ký
                     </button>
                   </div>
@@ -119,6 +119,7 @@ export default {
 <style scoped>
 .ChiTietLichKham h3 {
   padding: 20px;
+
 }
 
 .main_thongtinkhachhang {
@@ -143,16 +144,26 @@ export default {
   padding: 10px;
 }
 
+.col_thongtinkhachhang ul li label {
+  font-size: 20px;
+}
+
 .col_thongtinDangKy input,
 .col_thongtinkhachhang input {
   width: 100%;
   padding: 7px;
+  font-size: 20px;
 }
 
 .col_thongtinDangKy ul li {
   list-style: none;
   margin: 10px 40px 10px 0;
 }
+
+.col_thongtinDangKy ul label {
+  font-size: 20px;
+}
+
 
 
 .col_thongtinbenhnhan ul li,
@@ -177,7 +188,7 @@ export default {
 .button_DangKy button {
   width: 100%;
   padding: 10px 0;
-  background: #66bde6;
+  background: #039ae3;
   color: white;
   border: none;
 }

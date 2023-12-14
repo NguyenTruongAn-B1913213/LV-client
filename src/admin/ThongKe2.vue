@@ -15,44 +15,58 @@
                         </div> -->
                         <div class="d-flex">
                             <div>
-                                <select v-model="optionTK1" class="mr-2" style="height: 38px;" @change="onOptionChange">
-                                    <option value="0">Chọn Thống kê</option>
-                                    <option value="1">Thống kê Phòng Khám</option>
-                                    <option value="2">Thống kê Theo Bác Sĩ</option>
-                                </select>
-                            </div>
-                            <div v-if="shouldShowBacSiField">
-                                <select v-model="optionTK2" class="mr-2" style="height: 38px;" @change="onOptionChange">
-                                    <option value="0">Chọn Thống kê theo bác sĩ</option>
-                                    <option v-for="bs in ListBS" :key="bs.id" :value="bs._id">{{ bs.tenBS }}</option>
+                                <select v-model="lichKhamvabenhnhan" class="mr-2" style="height: 38px; font-size: 16px;"
+                                    @change="onOptionChange">
+                                    <option style="font-size: 16px;" value="0">Chọn Thống kê</option>
+                                    <option style="font-size: 16px;" value="1">Thống kê lịch khám</option>
+                                    <option style="font-size: 16px;" value="2">Thống kê bệnh nhân</option>
                                 </select>
                             </div>
                             <div>
-                                <select v-model="optionTK" class="mr-2" style="height: 38px;" @change="onOptionChange">
-                                    <option value="0">Chọn Thống kê Theo Thời Gian</option>
-                                    <option value="1">Thống kê Theo Ngày</option>
-                                    <option value="2">Thống kê Theo Tháng</option>
-                                    <option value="3">Thống kê Theo Năm</option>
+                                <select v-model="optionTK1" class="mr-2" style="height: 38px; font-size: 16px;"
+                                    @change="onOptionChange">
+                                    <option style="font-size: 16px;" value="0">Chọn Thống kê</option>
+                                    <option style="font-size: 16px;" value="1">Thống kê Phòng Khám</option>
+                                    <option style="font-size: 16px;" value="2">Thống kê Theo Bác Sĩ</option>
+                                </select>
+                            </div>
+                            <div v-if="shouldShowBacSiField">
+                                <select v-model="optionTK2" class="mr-2" style="height: 38px; font-size: 16px;"
+                                    @change="onOptionChange">
+                                    <option style="font-size: 16px;" value="0">Chọn Thống kê theo bác sĩ</option>
+                                    <option style="font-size: 16px;" v-for="bs in ListBS" :key="bs.id" :value="bs._id">{{
+                                        bs.tenBS }}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select v-model="optionTK" class="mr-2" style="height: 38px; font-size: 16px;"
+                                    @change="onOptionChange">
+                                    <option style="font-size: 16px;" value="0">Chọn Thống kê Theo Thời Gian</option>
+                                    <option style="font-size: 16px;" value="1">Thống kê Theo Ngày</option>
+                                    <option style="font-size: 16px;" value="2">Thống kê Theo Tháng</option>
+                                    <option style="font-size: 16px;" value="3">Thống kê Theo Năm</option>
                                 </select>
                             </div>
                             <div>
                                 <!-- Trường chọn ngày -->
-                                <select v-model="day" class="mr-2" style="height: 38px;" :disabled="!shouldShowDayField">
-                                    <option value="">Chọn ngày</option>
-                                    <option v-for="n in 31" :key="n" :value="n">{{ n }}</option>
+                                <select v-model="day" class="mr-2" style="height: 38px; font-size: 16px;"
+                                    :disabled="!shouldShowDayField">
+                                    <option style="font-size: 16px;" value="">Chọn ngày</option>
+                                    <option style="font-size: 16px;" v-for="n in 31" :key="n" :value="n">{{ n }}</option>
                                 </select>
 
                                 <!-- Trường chọn tháng -->
-                                <select v-model="month" class="mr-2" style="height: 38px;"
+                                <select v-model="month" class="mr-2" style="height: 38px; font-size: 16px;"
                                     :disabled="!shouldShowMonthField">
-                                    <option value="">Chọn tháng</option>
-                                    <option v-for="n in 12" :key="n" :value="n">{{ n }}</option>
+                                    <option style="font-size: 16px;" value="">Chọn tháng</option>
+                                    <option style="font-size: 16px;" v-for="n in 12" :key="n" :value="n">{{ n }}</option>
                                 </select>
 
                                 <!-- Trường chọn năm -->
-                                <select v-model="year" class="mr-2" style="height: 38px;">
-                                    <option value="">Chọn năm</option>
-                                    <option v-for="n in 100" :key="n" :value="n + 2000">{{ n + 2000 }}</option>
+                                <select v-model="year" class="mr-2" style="height: 38px; font-size: 16px;">
+                                    <option style="font-size: 16px;" value="">Chọn năm</option>
+                                    <option style="font-size: 16px;" v-for="n in 100" :key="n" :value="n + 2000">{{ n + 2000
+                                    }}</option>
                                 </select>
 
                             </div>
@@ -73,7 +87,7 @@
                                         <h3 style="color: black; margin-bottom: 40px; font-size: 50px;">Bảng Thống Kê</h3>
                                     </div>
                                     <div class="Thong-tin-Bac-Si" v-if="bacsi && (bacsi.tenBS || bacsi.soDienThoai)">
-                                        <h6>Thông Tin Bác Sĩ</h6>
+                                        <h6 style="text-align: center;">Thông Tin Bác Sĩ</h6>
                                         <ul>
                                             <li>Họ và Tên : <span v-if="bacsi.tenBS">{{ bacsi.tenBS }}</span></li>
                                             <li>Số Điện Thoại : <span v-if="bacsi.soDienThoai">{{ bacsi.soDienThoai
@@ -100,23 +114,45 @@
                                         </div>
                                     </div>
 
-                                    <div class="class-Info" style="margin-top: 30px;">
+                                    <div v-if="this.lichKhamvabenhnhan == 1" class="class-Info" style="margin-top: 30px;">
                                         <table class="table-Info">
                                             <tr>
-                                                <th>Stt</th>
-                                                <th>Căn Cước Công Dân/CMND</th>
-                                                <th>Tên Bệnh Nhân</th>
-                                                <th v-if="!optionTK2">Tên Bác Sĩ</th>
-                                                <th>Ngày Khám</th>
-                                                <th>Trạng Thái</th>
+                                                <th style="font-size: 20px;">Stt</th>
+                                                <th style="font-size: 20px;">Căn Cước Công Dân/CMND</th>
+                                                <th style="font-size: 20px;">Tên Bệnh Nhân</th>
+                                                <th style="font-size: 20px;" v-if="!optionTK2">Tên Bác Sĩ</th>
+                                                <th style="font-size: 20px;">Ngày Khám</th>
                                             </tr>
                                             <tr v-for="(item, index) in appointment.lichKhamWithBenhNhan" :key="index">
-                                                <td>{{ index + 1 }}</td>
-                                                <td>{{ item.benhNhan.madinhdanh }}</td>
-                                                <td>{{ item.benhNhan.ten }}</td>
-                                                <td v-if="!optionTK2">{{ item.bacsi.tenBS }}</td>
-                                                <td>{{ item.lichKham.ngaygioKham.ngay }}</td>
-                                                <td>{{ item.lichKham.trangThai }}</td>
+                                                <td style="font-size: 20px;">{{ index + 1 }}</td>
+                                                <td style="font-size: 20px;" v-if="item.benhNhan">{{
+                                                    item.benhNhan.madinhdanh }}</td>
+                                                <td style="font-size: 20px;" v-if="item.benhNhan">{{ item.benhNhan.ten }}
+                                                </td>
+                                                <td style="font-size: 20px;" v-if="!optionTK2">{{ item.bacsi.tenBS }}</td>
+                                                <td style="font-size: 20px;">{{ item.lichKham.ngaygioKham.ngay }}</td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div v-else class="class-Info" style="margin-top: 30px;">
+                                        <table class="table-Info">
+                                            <tr>
+                                                <th style="font-size: 20px;">Stt</th>
+                                                <th style="font-size: 20px;">Căn Cước Công Dân/CMND</th>
+                                                <th style="font-size: 20px;">Tên Bệnh Nhân</th>
+                                                <!-- <th style="font-size: 20px;" v-if="!optionTK2">Tên Bác Sĩ</th> -->
+                                                <!-- <th style="font-size: 20px;">Ngày Khám</th> -->
+                                            </tr>
+                                            <tr v-for="(item, index) in appointment" :key="index">
+                                                <td style="font-size: 20px;">{{ index + 1 }}</td>
+                                                <td style="font-size: 20px;" v-if="item.benhNhan">{{
+                                                    item.benhNhan.madinhdanh }}</td>
+                                                <td style="font-size: 20px;" v-if="item.benhNhan">{{ item.benhNhan.ten }}
+                                                </td>
+                                                <!-- <td style="font-size: 20px;" v-if="!optionTK2">{{ item.bacsi.tenBS }}</td> -->
+                                                <!-- <td style="font-size: 20px;">{{ item.lichKham.ngaygioKham.ngay }}</td> -->
+
                                             </tr>
                                         </table>
                                     </div>
@@ -140,8 +176,15 @@
                                                         <!-- <div class="line" style="border:1px solid black ; width: 150%;">
                                                         </div> -->
 
-                                                        <div class="total">
-                                                            <h4>Tổng : {{ total }} Lịch Khám <span></span></h4>
+                                                        <div v-if="this.lichKhamvabenhnhan == 1" class="total">
+                                                            <h5 style="font-size: 30px;">Tổng : {{ total }} Lịch Khám
+                                                                <span></span>
+                                                            </h5>
+                                                        </div>
+                                                        <div v-else class="total">
+                                                            <h5 style="font-size: 30px;">Tổng : {{ total }} Bệnh nhân
+                                                                <span></span>
+                                                            </h5>
                                                         </div>
                                                     </ul>
 
@@ -221,6 +264,7 @@ export default {
             shouldShowDayField: false,
             shouldShowMonthField: false,
             shouldShowBacSiField: false,
+            lichKhamvabenhnhan: 0
         };
     },
 
@@ -257,68 +301,135 @@ export default {
                 this.bacsi = {};
                 this.formattedDate = ""
                 let formattedDate;
-                if (this.optionTK2) {
-                    if (this.day && this.month && this.year) {
-                        const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS/report?day=${this.day}&month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`);
-                        const soluong = res.data;
-                        this.appointment = soluong;
-                        console.log(this.appointment)
-                        this.bacsi = soluong.bsID;
-                        const formattedDay = this.day < 10 ? `0${this.day}` : `${this.day}`;
-                        const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
-                        formattedDate = `${formattedDay}/${formattedMonth}/${this.year}`;
-                    }
+                if (this.lichKhamvabenhnhan == 2) {
+                    if (this.optionTK2) {
+                        if (this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/getThongKeBS/BNReport?day=${this.day}&month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            this.bacsi = soluong.bsID;
+                            const formattedDay = this.day < 10 ? `0${this.day}` : `${this.day}`;
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedDay}/${formattedMonth}/${this.year}`;
+                        }
 
-                    if (!this.day && this.month && this.year) {
-                        const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS/report?month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`);
-                        const soluong = res.data;
-                        this.appointment = soluong;
-                        console.log(this.appointment)
-                        this.bacsi = soluong.bsID;
-                        const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
-                        formattedDate = `${formattedMonth}/${this.year}`;
-                    }
-                    if (!this.day && !this.month && this.year) {
-                        const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS/report?year=${this.year}&idBacSi=${this.optionTK2}`);
-                        const soluong = res.data;
-                        this.appointment = soluong;
-                        console.log(this.appointment)
-                        this.bacsi = soluong.bsID;
-                        formattedDate = `${this.year}`;
-                    }
-                } else {
-                    if (this.day && this.month && this.year) {
-                        const res = await axios.get(`http://localhost:3000/api/get-Thongke/report?day=${this.day}&month=${this.month}&year=${this.year}`);
-                        const soluong = res.data;
-                        this.appointment = soluong;
-                        console.log(this.appointment)
-                        const formattedDay = this.day < 10 ? `0${this.day}` : `${this.day}`;
-                        const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
-                        formattedDate = `${formattedDay}/${formattedMonth}/${this.year}`;
-                    }
+                        if (!this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/getThongKeBS/BNReport?month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            this.bacsi = soluong.bsID;
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedMonth}/${this.year}`;
+                        }
+                        if (!this.day && !this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/getThongKeBS/BNReport?year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            this.bacsi = soluong.bsID;
+                            formattedDate = `${this.year}`;
+                        }
+                    } else {
+                        if (this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/getThongKeBNReport?day=${this.day}&month=${this.month}&year=${this.year}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            const formattedDay = this.day < 10 ? `0${this.day}` : `${this.day}`;
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedDay}/${formattedMonth}/${this.year}`;
+                        }
 
-                    if (!this.day && this.month && this.year) {
-                        const res = await axios.get(`http://localhost:3000/api/get-Thongke/report?month=${this.month}&year=${this.year}`);
-                        const soluong = res.data;
-                        this.appointment = soluong;
-                        console.log(this.appointment)
-                        const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
-                        formattedDate = `${formattedMonth}/${this.year}`;
+                        if (!this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/getThongKeBNReport?month=${this.month}&year=${this.year}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedMonth}/${this.year}`;
+                        }
+                        if (!this.day && !this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/getThongKeBNReport?year=${this.year}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            formattedDate = `${this.year}`;
+                        }
                     }
-                    if (!this.day && !this.month && this.year) {
-                        const res = await axios.get(`http://localhost:3000/api/get-Thongke/report?year=${this.year}`);
-                        const soluong = res.data;
-                        this.appointment = soluong;
-                        console.log(this.appointment)
-                        formattedDate = `${this.year}`;
+                    this.formattedDate = formattedDate
+                    console.log(this.appointment)
+                    this.total = this.appointment.length
+                    console.log(this.total)
+                }
+                else if (this.lichKhamvabenhnhan == 1) {
+                    if (this.optionTK2) {
+                        if (this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS/report?day=${this.day}&month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            this.bacsi = soluong.bsID;
+                            const formattedDay = this.day < 10 ? `0${this.day}` : `${this.day}`;
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedDay}/${formattedMonth}/${this.year}`;
+                        }
+
+                        if (!this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS/report?month=${this.month}&year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            this.bacsi = soluong.bsID;
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedMonth}/${this.year}`;
+                        }
+                        if (!this.day && !this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/BS/report?year=${this.year}&idBacSi=${this.optionTK2}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            this.bacsi = soluong.bsID;
+                            formattedDate = `${this.year}`;
+                        }
+
+                    } else {
+                        if (this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/report?day=${this.day}&month=${this.month}&year=${this.year}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            const formattedDay = this.day < 10 ? `0${this.day}` : `${this.day}`;
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedDay}/${formattedMonth}/${this.year}`;
+                        }
+
+                        if (!this.day && this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/report?month=${this.month}&year=${this.year}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            const formattedMonth = this.month < 10 ? `0${this.month}` : `${this.month}`;
+                            formattedDate = `${formattedMonth}/${this.year}`;
+                        }
+                        if (!this.day && !this.month && this.year) {
+                            const res = await axios.get(`http://localhost:3000/api/get-Thongke/report?year=${this.year}`);
+                            const soluong = res.data;
+                            this.appointment = soluong;
+                            console.log(this.appointment)
+                            formattedDate = `${this.year}`;
+                        }
                     }
+                    this.formattedDate = formattedDate
+                    console.log(this.appointment)
+                    this.total = this.appointment.lichKhamWithBenhNhan.length
+                    console.log(this.total)
+
                 }
 
                 // Sử dụng giá trị của formattedDate trong logic của bạn
-                this.formattedDate = formattedDate
-                console.log(this.appointment)
-                this.total = this.appointment.lichKhamWithBenhNhan.length
-                console.log(this.total)
+
 
             } catch (error) {
                 console.error(error);
@@ -388,13 +499,13 @@ export default {
 }
 
 .content-1 {
-    background: red;
+    background: #17a2b8;
     width: 15px;
     height: 100vh;
 }
 
 .Thong-tin-Bac-Si h6 {
-    color: red;
+    color: black;
 }
 
 .Thong-tin-Bac-Si ul {
@@ -431,11 +542,11 @@ td {
 }
 
 .table-Info tr th {
-    background: red;
+    background: #17a2b8;
     color: white;
 }
 
-.table-Info tr:nth-child(2) {
+.table-Info tr:nth-child(1) {
     background: #FCDAD5;
 }
 
@@ -448,6 +559,11 @@ td {
 
 .box-notes-2 {
     margin-top: 40px;
+}
+
+h4 {
+    color: black;
+    font-size: 40px;
 }
 
 .box-notes-2 ul li {

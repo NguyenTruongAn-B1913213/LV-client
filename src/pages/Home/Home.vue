@@ -122,7 +122,7 @@
             </div>
         </div> -->
 
-        <div class="TrangChu-component3 container">
+        <div class="TrangChu-component3 ">
             <div class="khamcacchuyenkhoa">
                 <h3>Cơ Sở Vật Chất Phòng Khám</h3>
             </div>
@@ -158,9 +158,9 @@
 
         <div class="TrangChu-component4">
             <div class="vechungtoi">
-                <div class="container id2">
+                <div class=" id2">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" style="padding-left: 80px;  font-size: 19px;">
                             <h3>VỀ CHÚNG TÔI</h3>
                             <p>PK PK01 là phòng khám điều trị và thẩm mỹ da theo tiêu chuẩn quốc tế với phong cách Nhật Bản.
                             </p>
@@ -175,8 +175,8 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <div class="video-yt-instroduce-hospital">
-                                <iframe width="540" height="360" src="https://www.youtube.com/embed/DPQhKLtTMbk"
+                            <div class="video-yt-instroduce-hospital" style="text-align: center;">
+                                <iframe width="650" height="400" src="https://www.youtube.com/embed/DPQhKLtTMbk"
                                     title="Tự giới thiệu | Phòng khám đa khoa Trung Cang" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowfullscreen></iframe>
@@ -385,10 +385,10 @@ h3 {
 
 .khamcacchuyenkhoa h3 {
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    font-weight: 100;
-    font-size: 35px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 40px;
 }
 
 .icon-chuyenkhoa {

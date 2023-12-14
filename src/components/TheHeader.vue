@@ -39,7 +39,8 @@
                 </div> -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Trang Chủ</router-link>
+            <router-link to="/" class="nav-link ">Trang
+              Chủ</router-link>
           </li>
 
           <!-- <li class="nav-item dropdown">
@@ -110,7 +111,13 @@
             <div class="box-notifications">
               <ul style="margin: 0; padding: 0;" v-for="(notification, index) in notifications" :key="index"
                 @click="redirectToAppointment(notification._id)">
-                <li>
+                <li v-if="notification.trangThaiNotification">
+                  <span>Lịch Khám Của Bạn Đã Được Xác Nhận</span>
+                  <span>Số Thứ Tự: {{ notification.stt }}</span>
+                  <span>Khám Vào Ngày: {{ notification.ngaygioKham.thu }} {{ notification.ngaygioKham.ngay }}</span>
+                  <span>Ca Khám: {{ notification.ngaygioKham.thu }}</span>
+                </li>
+                <li v-else style="background-color: #F0F0F0;">
                   <span>Lịch Khám Của Bạn Đã Được Xác Nhận</span>
                   <span>Số Thứ Tự: {{ notification.stt }}</span>
                   <span>Khám Vào Ngày: {{ notification.ngaygioKham.thu }} {{ notification.ngaygioKham.ngay }}</span>
@@ -143,8 +150,7 @@
           <div class="avatar-user" v-if="token">
             <div class="avatar-user-header">
               <img v-if="photo" :src="photo" alt="">
-              <img v-else :src="'https://example.com/default-image.jpg?timestamp=' + Date.now()" alt="">
-
+              <img v-else src="../../src/assets/TinTucSuKien/272985925_2095334303953118_2977323602357798456_n.jpg" alt="">
             </div>
             <div class="name-user">
               <span>{{ userName }}</span>
@@ -217,7 +223,7 @@ export default {
     const proFile = Cookies.get("proFile");
     const UserID = Cookies.get("UserID")
     const userName = Cookies.get("userName")
-    const role = Cookies.get("role")
+    let role = Cookies.get("role")
     const photo = Cookies.get("photo")
     if (token) {
       this.setToken(token)
@@ -235,7 +241,7 @@ export default {
       if (this.userID === data.tkid) {
         this.notifications.unshift(data);
       }
-    });
+    })
 
 
   },
@@ -290,13 +296,16 @@ export default {
           const dateB = new Date(b.createAt);
           return dateA > dateB ? -1 : dateA < dateB ? 1 : 0;
         });
+        console.log(this.notifications)
       } catch (error) {
         console.log(error)
 
       }
     },
+
     async redirectToAppointment(appointmentId) {
       try {
+        await axios.get(`http://localhost:3000/api//check-notification/${appointmentId}`);
         this.GetNotification()
         this.$router.push(`/IncidentReport/${appointmentId}`);
       } catch (error) {
@@ -332,6 +341,10 @@ export default {
 </script>
 
 <style>
+.navbar-light .nav-link:hover {
+  color: lightcyan;
+}
+
 /* .inforPhongKham {
     display: flex;
     justify-content: space-between;
@@ -347,9 +360,10 @@ export default {
 }
 
 .avatar-user .name-user span {
-  font-size: 23px;
+  font-size: 26px;
   padding: 20px;
   color: white;
+  text-transform: uppercase
 }
 
 .avatar-user .name-user {
@@ -514,14 +528,14 @@ export default {
 }
 
 .address ul li i:first-of-type {
-  color: #1e90ff;
+  color: #039ae3;
   margin-right: 10px;
   font-weight: bold;
   font-size: 25px;
 }
 
 .address ul li span:first-of-type {
-  color: #1e90ff;
+  color: #039ae3;
   margin-right: 10px;
   font-weight: bold;
   font-size: 25px;
@@ -543,7 +557,7 @@ export default {
 .navbar-header {
   position: -webkit-sticky;
   position: sticky;
-  background: #1e90ff;
+  background: #039ae3;
   top: 0;
   z-index: 100;
   padding: 10px 0;
@@ -555,11 +569,40 @@ export default {
 
 .navbar-light .navbar-nav .nav-link {
   color: white;
-  font-size: 17pt;
+  font-size: 18pt;
+  font-weight: inherit;
+  cursor: pointer;
+  margin: 0 5px;
+
+}
+
+.navbar-light .navbar-nav {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18pt;
+  font-weight: inherit;
+  cursor: pointer;
+  margin: 0 5px;
+
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #E8E8E8;
+  font-size: 18pt;
   font-weight: 450;
   cursor: pointer;
   margin: 0 5px;
 }
+
+.navbar-light .navbar-nav .nav-link:focus {
+  color: white;
+  font-size: 18pt;
+  font-weight: 450;
+  cursor: pointer;
+  margin: 0 5px;
+
+}
+
 
 .buttonSearch {
   border: none;
