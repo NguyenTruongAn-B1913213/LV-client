@@ -19,9 +19,7 @@
                         </button>
                     </div>
                 </li>
-
             </ul>
-
         </div>
 
         <div class="chat-input">
@@ -82,14 +80,14 @@ export default {
                 message: youMessage
             };
             const response = await axios.post(chatbotURL, message);
-            console.log(response)
+            console.log(response.data)
             if (response.data[0].buttons) {
                 this.messages.push({
                     text: response.data[0].text,
                     buttons: response.data[0].buttons
                 });
             } else {
-                this.messages.push(`bot: ${response.data[0].text}`);
+                this.messages.push(`Bot: ${response.data[0].text}`);
             }
             this.scrollToBottom();
 
@@ -134,12 +132,13 @@ export default {
                     const transcript = event.results[0][0].transcript;
 
                     this.newMessage = transcript;
-                    this.messages.push(`You : ${this.newMessage}`);
+                    this.messages.push(`Bạn : ${this.newMessage}`);
                     this.scrollToBottom();
                     const message = {
                         sender: this.userID,
                         message: this.newMessage
                     };
+                    this.newMessage = '';
                     const chatbotURL = 'http://localhost:5005/webhooks/rest/webhook';
                     const response = await axios.post(chatbotURL, message);
                     this.messages.push(`Bot: ${response.data[0].text}`);
